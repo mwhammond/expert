@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="assets/ico/favicon.png">
+
+	<title>Betalab | Connecting high-quality start-ups with industry and technical experience.</title>
+
+
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+
+
+
+</head>
+<body>
+
+	<div id="wrap">
+
+		<% if notice %>
+		<p class="alert alert-notice"><%= notice %></p>
+		<% end %>
+		<% if alert %>
+		<p class="alert alert-error"><%= alert %></p>
+		<% end %>
+
+		<!-- NAV -->
+
+
+
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">advsr</a> 
+				</div>
+				<div class="navbar-collapse navbar-inverse collapse">
+					<ul class="nav navbar-nav navbar-inverse navbar-right">
+						<li><%= link_to "Startups", startups_path %></li>
+						<li><%= link_to "Advisors", advisors_path %></li>
+						<li><%= link_to "About", home_about_path %></li>
+						<% if user_signed_in? %>
+						<li><%= link_to "My Profile", current_user %></li>
+						<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+						<% else %>
+						<li><%= link_to "Sign in", user_session_path %></li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		
+
+						<%= yield %>
+
+
+
+
+		<%= render :partial => "layouts/footer" %>
+
+	</div>
+
+</body>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-48368772-1', 'mwhammond.github.io');
+ga('send', 'pageview');
+
+</script>
+
+<script>
+
+$(document).ready(function () {
+	$('#thankyou').hide();
+	$('#multiple').show();
+	$('#fieldklsl').change(function () {
+		$('.group').hide();
+		$('#'+$(this).val()).show();
+	})
+});
+
+
+</script>
+
+
+<script type="text/javascript">
+$(function () {
+	$('#registerform').submit(function (e) {
+		e.preventDefault();
+		$.getJSON(
+			this.action + "?callback=?",
+			$(this).serialize(),
+			function (data) {
+				if (data.Status === 400) {
+					alert("Error. Please reload the page and if this happens again contact mark.hammond@imperialinnovations.co.uk");
+                } else { // 200
+                    //alert("Success: " + data.Message);
+                    $('#registerform').hide();
+                    $('#thankyou').show();
+
+                }
+            });
+	});
+});
+</script>
+
+</html>

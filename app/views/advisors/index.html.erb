@@ -1,0 +1,67 @@
+
+
+
+
+ <!-- ADVISORS -->
+
+  <div id="innerpage">
+    <div class="container">
+      <div class="row mt">
+        <div class="col-lg-8">
+          <br>
+          <h1>Featured advisors</h1>
+            <p>This is small sample of senior industry figures that are keen to work with start-ups. To browse all advisors you must <%= link_to "register your start-up", home_startupsignup_path %>. If you are a senior industry figure with an interest in innovation and start-ups <%= link_to "we would love to hear from you", home_advisorsignup_path %>. </p>
+
+            <% if can? :update, @startup %>
+
+            <h3><%= link_to '+ Add new advisor', new_advisor_path %></h3>
+
+            <% end %>
+
+          </div>
+
+        </div>
+
+        <div class="row mt">
+
+          <br>
+
+          <% @advisors.each do |advisor| %>
+        
+          <div class="col-lg-3">
+            
+            <%= image_tag advisor.avatar.url(:thumb), class: "img-responsive" %>
+            <h3><%= advisor.name %></h3>
+            <p><b><%= advisor.sector %></b><p>
+              <p><%= advisor.summary %></p>
+              <h5><a href="#">+ connect</a></h5>
+                
+                <% if can? :update, @startup %>
+
+      <p><%= link_to 'Edit', edit_advisor_path(advisor) %> | 
+      <%= link_to 'Delete', advisor_path(advisor),
+                    method: :delete, data: { confirm: 'Are you sure?' } %> </p>
+
+                <% end %>
+              
+          </div>
+
+          <%end%>
+
+
+                <div class="row mt">
+                    <div class="col-lg-12">
+                      <br>
+                      <%= button_to "Apply to be an advisor", new_advisor_path, :class => "btn btn-success btn-lg pull-right", :method => :get %>
+
+
+                    </div>
+
+                </div>      
+
+<br>
+<br>
+              </div>
+            </div>    
+
+            <%= render :partial => "layouts/getnotified" %>

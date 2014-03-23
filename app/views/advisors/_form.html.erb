@@ -1,0 +1,179 @@
+<br>
+
+<h1>Complete your profile</h1>
+<div class="row mt">
+  <div class="col-lg-5">
+
+    <div class="form-group">
+
+
+      <%= form_for @advisor, :html => { :multipart => true } do |f| %>
+
+      <% if @advisor.errors.any? %>
+
+      <div id="error_explanation">
+
+        <h2><%= pluralize(@advisor.errors.count, "error") %> prohibited
+          this post from being saved:</h2>
+
+          <ul>
+            <% @advisor.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+
+        <h3>Experience and interests</h3>
+
+
+        <p>
+          <%= f.label :sector, "What sectors do you have expertise in (comma seperated)" %><br>
+          <%= f.text_field :sector, size: "45x1" %>
+        </p>
+
+        <p>How often do you currently work with start-ups?</p>
+        <div class="control-group">
+          <div class="controls">
+
+            <%= f.radio_button(:startupExperience, "Never") %>
+            <%= f.label(:startupExperience_1, "Never") %>
+
+            <%= f.radio_button(:startupExperience, "Occasionally") %>
+            <%= f.label(:startupExperience_2, "Occasionally") %>
+
+            <%= f.radio_button(:startupExperience, "Regularly") %>
+            <%= f.label(:startupExperience_2, "Regularly") %>
+
+          </div>
+        </div>
+
+        <br>
+        <p>How much availability do you have?</p>
+
+        <div class="control-group">
+          <div class="controls">
+
+            <%= f.radio_button(:bandwidth, "Rare") %>
+            <%= f.label(:bandwidth_1, "About 1 day month") %>
+
+            <%= f.radio_button(:bandwidth, "Occasionally") %>
+            <%= f.label(:bandwidth_2, "About 1 to 2 days per week") %>
+
+            <%= f.radio_button(:bandwidth, "Regularly") %>
+            <%= f.label(:bandwidth_2, "More than 2 days per week") %>
+
+          </div>
+        </div>
+
+        <br>
+        <p>Which stages interest you most? (leave blank if unsure)</p>
+
+        <div class="control-group">
+          <div class="controls">
+
+            <%= f.check_box :idea %>
+            <%= f.label :idea, "Idea stage" %>
+
+            <%= f.check_box :market %>
+            <%= f.label :market, "Market discovery" %>
+
+            <%= f.check_box :product %>
+            <%= f.label :product, "Product refinement" %>
+
+            <%= f.check_box :launch %>
+            <%= f.label :launch, "Launch" %>
+
+            <%= f.check_box :revenue %>
+            <%= f.label :revenue, "In Revenue" %>
+
+            <%= f.check_box :profitable %>
+            <%= f.label :profitable, "Profitable" %>
+
+            <%= f.check_box :scaling %>
+            <%= f.label :scaling, "Scaling" %>
+
+            <%= f.check_box :sale %>
+            <%= f.label :sale, "Sale" %>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-5 col-lg-offset-1">
+
+      <h3>Detail</h3>
+
+       <p>
+        <%= f.label :summary, "2-3 lines describing how your expertise could benefit a startup" %><br>
+        <%= f.text_area :summary, size: "60x3" %>
+
+      </p>
+
+
+
+      <p>
+        <%= f.label :linkedin, "Link to Linkedin profile (optional)" %><br>
+        <%= f.text_field :linkedin, size: "30x1" %>
+      </p>
+
+
+
+      <p>Upload a photo (optional but increases responses)</p>
+      <%= f.file_field :avatar %>
+
+    
+
+
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :updates %>
+          Recieve weekly update on new start-ups and advisors
+        </label>
+      </div>
+
+
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :public %>
+          Make my profile visible to start-ups
+        </label>
+      </div>
+
+
+
+
+      <% if current_user.admin? %>
+
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :quality %>
+          Passed the quality filter
+        </label>
+      </div>
+
+
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :featured %>
+          Featured advisor
+        </label>
+      </div>
+
+      <% end %>
+      <!-- This copies over the details from the user creating the advisor but less hassle than using the link each time. Maybe change later-->
+
+      <%= f.hidden_field :name, :value => current_user.name %>
+      <%= f.hidden_field :email, :value => current_user.email %>
+
+      <p>
+
+        <%= f.submit "Create Profile", :class => "btn btn-success" %>
+      </p>
+      <% end %>
+
+    </div>
+  </div>

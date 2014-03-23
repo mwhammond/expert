@@ -1,0 +1,121 @@
+
+<%= form_for @startup, :html => { :multipart => true } do |f| %>
+
+ <% if @startup.errors.any? %>
+
+  <div id="error_explanation">
+
+    <h2><%= pluralize(@startup.errors.count, "error") %> prohibited
+      this post from being saved:</h2>
+
+    <ul>
+    <% @startup.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+    <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </p>
+
+   <p>
+    <%= f.label :link %><br>
+    <%= f.text_field :link %>
+  </p>
+
+     <p>
+    <%= f.label :sector %><br>
+    <%= f.text_field :sector %>
+  </p>
+
+
+  <p>
+    <%= f.label :bio %><br>
+    <%= f.text_area :bio, size: "60x12" %>
+
+  </p>
+
+    <p>
+    <%= f.label :requests %><br>
+    <%= f.text_area :requests, size: "60x12" %>
+
+  </p>
+
+
+  <%= f.file_field :avatar %>
+
+  <p>When were you founded?</p>
+
+<%= date_field(:startup, :founded) %>
+
+ 
+
+<p>What stage would you say you are at?</p>
+
+<%= f.collection_radio_buttons :stage, %w[Idea Market Product Launch Revenue Profitable Scaling Sale], :to_s, :to_s %>
+
+
+<p>Approximately how much capital have you raised to date?</p>
+
+<%= f.collection_radio_buttons :stage, %w[£0-100k £100-£1m £1m-5m 5m+], :to_s, :to_s %>
+
+
+
+<p>- - - </p>
+
+<p>
+
+<p>Would you like to recieve regular updates on needs across the start-ups and new advisors even if they don't specifically match your expertise?</p>
+<%= f.check_box :updates %>
+<%= f.label(:updates, "Yes") %>
+
+</p>
+
+<p>
+
+<p>Make my profile visible to start-ups</p>
+<%= f.check_box :public %>
+<%= f.label(:public, "Yes") %>
+
+</p>
+
+
+
+<p>---------------------------------</p>
+
+
+<% if can? :update, @startup %>
+
+
+
+  <p>
+    <%= f.label :quality %><br>
+    <%= f.text_field :quality %>
+  </p>
+
+    <p>
+    <%= f.label :featured %><br>
+    <%= f.check_box :featured %>
+  </p>
+
+      <p>
+    <%= f.label :casestudy %><br>
+    <%= f.check_box :casestudy %>
+  </p>
+
+
+<% end %>
+ 
+  <p>
+    <%= f.submit "Create profile" %>
+  </p>
+<% end %>

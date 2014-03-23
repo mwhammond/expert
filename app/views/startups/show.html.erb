@@ -1,0 +1,39 @@
+<%= link_to 'Edit', edit_startup_path(@startup) %>
+
+
+<%= image_tag @startup.avatar.url(:thumb) %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @startup.name %>
+</p>
+ 
+<p>
+  <strong>Summary:</strong>
+  <%= @startup.bio %>
+</p>
+
+<p>
+  <strong>Sector:</strong>
+  <%= @startup.sector %>
+</p>
+
+<p>
+  <strong>Founded:</strong>
+  <%= @startup.founded %>
+</p>
+
+<p>
+  <strong>Featured:</strong>
+  <%= @startup.featured %>
+</p>
+
+<p>
+  <strong>Requests:</strong>
+  <%= @startup.requests %>
+</p>
+
+<p>
+  <strong>Case study:</strong>
+  <%= @startup.casestudy %>
+</p>

@@ -1,0 +1,53 @@
+ 
+<div class="col-lg-10 col-log-offset-2">
+
+<% if user_signed_in? %>
+
+<h2>Hi <%=current_user.name%> </h2>
+
+<h2><%= link_to 'Create your advisor profile', new_startup_path%></h2>
+<p><%= link_to 'Alternatively register yourself as an advisor', new_advisor_path %> </p>
+<p>Test</p>
+
+<% else %>
+
+
+
+
+<h1>Sign up as startup</h2>
+
+<h2>Pursuade to sign up here</h2>
+
+<p>Sign up</p>
+
+<p>If you already registered <%= link_to 'sign in', user_session_path %> otherwise create a proile below</p>
+
+<p>Part 1 of 2</p>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :name %><br />
+  <%= f.text_field :name, :autofocus => true %></div>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+<%= f.hidden_field :usertype, :value => "startup" %>
+
+<!-- This hidden field is used to hint to devise to redirect to the right advisor / startup template (model) once a user is set up.  -->
+
+ 
+
+  <div><%= f.submit "Register" %></div>
+<% end %>
+
+<% end %>
+
+</div>	
