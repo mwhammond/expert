@@ -15,8 +15,9 @@ class AdvisorsController < ApplicationController
 	#@advisor = @user.advisors.create(advisor_params)
 
 	@advisor = Advisor.new(advisor_params)
+	@advisor.user_id = current_user.id
 	@advisor.save
-	redirect_to @advisor
+	redirect_to current_user
 end
 
 
@@ -27,6 +28,7 @@ end
 def edit
 	@advisor = Advisor.find(params[:id])
 	@advisor.save
+	redirect_to current_user
 end
 
 def update
@@ -50,7 +52,7 @@ end
 
 private
 def advisor_params
-	params.require(:advisor).permit(:idea, :market, :product, :launch, :revenue, :profitable, :scaling, :scale, :avatar, :name, :linkedin, :summary, :sector, :startupExperience, :bandwidth, :stage, :expertise, :public, :referred, :quality, :email, :featured)
+	params.require(:advisor).permit(:idea, :market, :product, :launch, :revenue, :profitable, :scaling, :sale, :avatar, :name, :linkedin, :summary, :sector, :startupExperience, :bandwidth, :stage, :expertise, :public, :referred, :quality, :email, :featured)
 end
 
 end

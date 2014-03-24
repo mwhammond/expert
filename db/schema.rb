@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323221258) do
+ActiveRecord::Schema.define(version: 20140324204515) do
 
   create_table "advisors", force: true do |t|
     t.string   "name"
@@ -67,6 +67,14 @@ ActiveRecord::Schema.define(version: 20140323221258) do
     t.datetime "updated_at"
     t.boolean  "updates"
     t.integer  "user_id"
+    t.binary   "idea"
+    t.binary   "market"
+    t.binary   "product"
+    t.binary   "launch"
+    t.binary   "revenue"
+    t.binary   "profitable"
+    t.binary   "scaling"
+    t.binary   "sale"
   end
 
   create_table "users", force: true do |t|

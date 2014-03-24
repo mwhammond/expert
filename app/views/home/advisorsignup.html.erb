@@ -8,67 +8,67 @@
         
         <p>For industry professionals, Betalab offers a curated source of young, high quality companies that are seeking market-specific knowledge and expertise to help them drive their business. If you’re an experienced industry professional, looking to engage in the world of start-up enterprises, then Betalab can connect you with the right company.</p>
 
-          <br>
+        <br>
 
-          <% if user_signed_in? %>
+        <% if user_signed_in? %>
 
-          <h2>Hi <%=current_user.name%> </h2>
+        <h2>Hi <%=current_user.name%> </h2>
 
-          <h2><%= link_to "Create your startup profile", new_advisor_path%></h2>
+        <h2><%= link_to "Create your startup profile", new_advisor_path%></h2>
 
-          <p><%= link_to "Alternatively register a startup", new_startup_path %> </p>
+        <p><%= link_to "Alternatively register a startup", new_startup_path %> </p>
 
-          <!-- if no logged in -- >
-          <% else %>
-
-
-          <h3>First create a profile (step 1 of 2)</h3>
-
-            <p>This allows you about to log-in to update your profile, search start-ups and make connections. If you already registered <%= link_to 'sign in', user_session_path %>.</p>
+        <!-- if no logged in -- >
+        <% else %>
 
 
+        <h3>First create a profile (step 1 of 2)</h3>
 
-            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-            <%= devise_error_messages! %>
-
-            <div class="form-group">
-
-            <div><%= f.label :name, "Full name" %><br />
-              <%= f.text_field :name, :autofocus => true, :class=> 'class="form-control' %></div>
-
-              <div><%= f.label :email %><br />
-                <%= f.email_field :email %></div>
-
-                <div><%= f.label :password %><br />
-                  <%= f.password_field :password %></div>
-
-                  <div><%= f.label :password_confirmation %><br />
-                    <%= f.password_field :password_confirmation %></div>
-
-                    <%= f.hidden_field :usertype, :value => "advisor" %>
-
-                    <br>
-
-                    <div><%= f.submit "Submit", :class => 'btn btn-success' %></div>
-                    <% end %>
-                  </div>
+        <p>This allows you about to log-in to update your profile, search start-ups and make connections. If you already registered <%= link_to 'sign in', user_session_path %>.</p>
 
 
+
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="form-group">
+
+          <div><%= f.label :name, "Full name" %><br />
+            <%= f.text_field :name, :autofocus => true, :class=> 'class="form-control' %></div>
+
+            <div><%= f.label :email %><br />
+              <%= f.email_field :email %></div>
+
+              <div><%= f.label :password %><br />
+                <%= f.password_field :password %></div>
+
+                <div><%= f.label :password_confirmation %><br />
+                  <%= f.password_field :password_confirmation %></div>
+
+                  <%= f.hidden_field :usertype, :value => "advisor" %>
+
+                  <br>
+
+                  <div><%= f.submit "Submit", :class => 'btn btn-success' %></div>
+                  <% end %>
                 </div>
 
-<div class="col-lg-4">
 
-
-</div>
-
-                    <% end %>
-
-
-                
               </div>
-            </div>
-            </div>
 
-            <br>
-            <br>
-            <br>
+              <div class="col-lg-4">
+
+
+              </div>
+
+              <% end %>
+
+
+              
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <br>
+        <br>

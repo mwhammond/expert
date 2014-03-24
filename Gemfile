@@ -6,6 +6,9 @@ gem 'rails', '4.0.2'
 # for image uploads
 gem "paperclip", "~> 4.1"
 
+# amazon s3
+gem 'aws-sdk'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 

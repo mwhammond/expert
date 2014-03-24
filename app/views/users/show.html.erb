@@ -1,35 +1,52 @@
-   <div id="matches">
-   	<div class="container">
-   		<div class="row mt">
-   			<div class="col-lg-12">
+   <div id="innerpage">
+    <div class="container">
 
-   				<h2>Dashboard</h2>
+      <div class="col-lg-8">
+      <br>
 
-   				<h3>Hi <%=@user.name%></h3>
+      <h1>Dashboard</h1>
+      <br>
+      <p>Hi <%=@user.name%>,</p>
 
-   				<p>Chunk of text on why this is a great idea</p>
+      <p>This area will allow you to view matches and update preferences and profiles but not everything is quite ready yet! Thank you for your patience and we'll update you soon!</p>
 
-   				<% if @user.advisor? %>
+      <br>
+      
 
-   				
+      <h3>Your profiles</h3>
+      <br>
 
-   		
+      <% if @advisorrecords %>
+      <% @advisorrecords.each do |advisorlisting| %>
+      <p><%= link_to "Edit your advisor profile", advisorlisting %></p>
+      <% end %>
 
-   				<% elsif @user.usertype = "startup" %>
+      <% else %>
+      <p>You haven't created any advisor profiles yet</p>
+  
+      <% end %>
 
-   				<p>Hi <%=@user.name%></p>
+      <% if @startuprecords %>
+      <% @startuprecords.each do |startuplisting| %>
+      <p><%= link_to "Edit your startup profile", startuplisting %></p>
+      <% end %>
 
-   				<p>Startup form!</p>
+      <% else %>
+      <p>You haven't created any startup profiles yet</p>
+  
+      <% end %>
+      
 
-   				<% else %>
+      
 
-   				<p><%= button_to "Register a startup", new_startup_path, :class => "btn btn-success btn-lg pull-right", :method => :get %></p>
-   				<p><%= button_to "Register as an advisor", new_advisor_path, :class => "btn btn-success btn-lg pull-right", :method => :get %></p>
+      <p>- - - - - - - - - - - - - - - -</p>
 
-   				<%end%>
-
-   			</div>	
-
-   		</div>
-   	</div>
+      <p><%= link_to "+ Add another startup Profile", new_startup_path %></p>
+      <p><%= link_to "+ Add another advisor profile", new_advisor_path %></p>
    </div>
+</div>
+</div>
+
+
+<br>
+<br>
