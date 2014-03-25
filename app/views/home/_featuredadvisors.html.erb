@@ -17,6 +17,7 @@
 
           <br>
 
+          <% if @featuredadvisors %>
   				<% @featuredadvisors.each do |advisor| %>
 				
   				<div class="col-lg-3">
@@ -29,6 +30,7 @@
   				</div>
 
   				<%end%>
+          <%end%>
 
 
   							<div class="row mt">
