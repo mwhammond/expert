@@ -27,7 +27,7 @@ Expert::Application.configure do
   # config.assets.css_compressor = :sass
 
   # turn off asset pipeline for devise
-  config.assets.enabled = false # for devise
+  #config.assets.enabled = false # for devise
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
