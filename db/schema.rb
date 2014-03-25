@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324204515) do
+ActiveRecord::Schema.define(version: 20140325222535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,9 +58,6 @@ ActiveRecord::Schema.define(version: 20140324204515) do
     t.string   "stage"
     t.string   "capital"
     t.text     "requests"
-    t.binary   "public"
-    t.binary   "featured"
-    t.binary   "casestudy"
     t.integer  "quality"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
@@ -78,6 +75,9 @@ ActiveRecord::Schema.define(version: 20140324204515) do
     t.binary   "profitable"
     t.binary   "scaling"
     t.binary   "sale"
+    t.boolean  "featured"
+    t.boolean  "public"
+    t.boolean  "casestudy"
   end
 
   create_table "users", force: true do |t|

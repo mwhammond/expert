@@ -26,6 +26,7 @@
 
           <br>
 
+          <% if @startups %> 
           <% @startups.each do |startup| %>
         
           <div class="col-lg-3">
@@ -35,7 +36,7 @@
             <p><b><%= startup.sector %></b><p>
               <p><%= startup.bio %></p>
               <p><%= startup.requests %></p>
-              <h5><a href="#">+ connect</a></h5>
+             
                 
                 <% if can? :update, @startup %>
 
@@ -47,6 +48,10 @@
               
           </div>
 
+          <%end%>
+
+          <%else%>
+          <p>We seem to have temporarily lost the records?</p>
           <%end%>
 
 

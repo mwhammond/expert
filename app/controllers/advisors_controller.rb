@@ -5,7 +5,15 @@ class AdvisorsController < ApplicationController
 	end
 
 	def index
-		@advisors = Advisor.where(:featured => true)
+
+		if signed_in?
+			if current_user.admin?
+				@advisors = Advisor.all
+			end
+		else
+				@advisors = Advisor.where(:featured => true)
+		end
+
 	end
 
 
@@ -18,7 +26,7 @@ class AdvisorsController < ApplicationController
 	@advisor.user_id = current_user.id
 	@advisor.save
 	redirect_to current_user
-end
+	end
 
 
 def show
@@ -28,7 +36,7 @@ end
 def edit
 	@advisor = Advisor.find(params[:id])
 	@advisor.save
-	redirect_to current_user
+	#redirect_to current_user
 end
 
 def update

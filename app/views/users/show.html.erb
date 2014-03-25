@@ -1,9 +1,7 @@
    <div id="innerpage">
     <div class="container">
-
       <div class="col-lg-8">
-      <br>
-
+     
       <h1>Dashboard</h1>
       <br>
       <p>Hi <%=@user.name%>,</p>
@@ -18,7 +16,7 @@
 
       <% if @advisorrecords %>
       <% @advisorrecords.each do |advisorlisting| %>
-      <p><%= link_to "Edit your advisor profile", advisorlisting %></p>
+      <p><%= link_to "Edit your advisor profile", edit_advisor_path(advisorlisting) %></p>
       <% end %>
 
       <% else %>
@@ -28,7 +26,7 @@
 
       <% if @startuprecords %>
       <% @startuprecords.each do |startuplisting| %>
-      <p><%= link_to "Edit your startup profile", startuplisting %></p>
+      <p><%= link_to "Edit your startup profile", edit_startup_path(startuplisting) %></p>
       <% end %>
 
       <% else %>
@@ -41,8 +39,8 @@
 
       <p>- - - - - - - - - - - - - - - -</p>
 
-      <p><%= link_to "+ Add another startup Profile", new_startup_path %></p>
-      <p><%= link_to "+ Add another advisor profile", new_advisor_path %></p>
+      <p><%= link_to "+ Add a startup Profile", new_startup_path %></p>
+      <p><%= link_to "+ Add a advisor profile", new_advisor_path %></p>
    </div>
 </div>
 </div>

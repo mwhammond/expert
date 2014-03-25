@@ -5,7 +5,13 @@ class StartupsController < ApplicationController
 	end
 
 	def index
-		@startups = Startup.where(:featured => true)
+		if signed_in?
+			if current_user.admin?
+				@startups = Startup.all
+			end
+		else
+				@startups = Startup.where(:featured => true)
+		end
 	end
 
 
