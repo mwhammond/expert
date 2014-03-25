@@ -9,6 +9,9 @@ gem "paperclip", "~> 4.1"
 # amazon s3
 gem 'aws-sdk'
 
+# to fix images not working on heroku
+gem 'rails_12factor', group: :production
+
 # Use postgres for database
 gem 'pg'
 
