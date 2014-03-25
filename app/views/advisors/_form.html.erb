@@ -26,6 +26,20 @@
 
         <h3>Experience and interests</h3>
 
+        <%if signed_in?%>
+        <%if current_user.admin?%>
+         <p>
+          <%= f.label :name, "Name on profile" %><br>
+          <%= f.text_field :name, size: "30x1"%>
+        </p>
+
+       <p>
+          <%= f.label :email, "Email for alerts on matches", :value => current_user.name %><br>
+          <%= f.text_field :name, size: "30x1"%>
+        </p>
+        <%end%>
+        <%end%>
+
 
         <p>
           <%= f.label :sector, "What sectors do you have expertise in (comma seperated)" %><br>
