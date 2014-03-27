@@ -1,3 +1,5 @@
+<%= form_for @startup, :html => { :multipart => true } do |f| %>
+
 <h1>Complete your profile</h1>
 <div class="row mt">
   <div class="col-lg-5">
@@ -5,7 +7,7 @@
     <div class="form-group">
 
 
-      <%= form_for @startup, :html => { :multipart => true } do |f| %>
+      
 
       <% if @startup.errors.any? %>
 
@@ -159,7 +161,9 @@
 
         <%= f.submit "Create Profile", :class => "btn btn-success" %>
       </p>
-      <% end %>
+      
 
     </div>
   </div>
+
+  <% end %>

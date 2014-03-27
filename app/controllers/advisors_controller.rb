@@ -5,62 +5,51 @@ class AdvisorsController < ApplicationController
 	end
 
 	def index
-
-		if signed_in?
-			if current_user.admin?
-				@advisors = Advisor.all
-			end
-		else
-				@advisors = Advisor.where(:featured => true)
-		end
-
+		@advisors = Advisor.where(:featured => true)
 	end
 
 
 	def create
-	#	render text: params[:advisor].inspect
-	#@order = @customer.orders.create(order_date: Time.now)
-	#@advisor = @user.advisors.create(advisor_params)
+		@advisor = Advisor.new(advisor_params)
 
-	@advisor = Advisor.new(advisor_params)
-	@advisor.user_id = current_user.id
-	@advisor.save
-	redirect_to current_user
+		if @advisor.save
+			redirect_to current_user, notice: 'Profile was successfully created.'
+		else
+			render action: 'new'
+		end
 	end
 
 
-def show
-	@advisor = Advisor.find(params[:id])
-end
-
-def edit
-	@advisor = Advisor.find(params[:id])
-	@advisor.save
-	#redirect_to current_user
-end
-
-def update
-	@advisor = Advisor.find(params[:id])
-
-	if @advisor.update(advisor_params)
-		redirect_to current_user
-	else
-		render 'edit'
+	def show
+		@advisor = Advisor.find(params[:id])
 	end
-end
 
-def destroy
-  @advisor = Advisor.find(params[:id])
-  @advisor.destroy
- 
-  redirect_to advisors_path
-end
+	def edit
+		@advisor = Advisor.find(params[:id])
+	end
+
+	def update
+		@advisor = Advisor.find(params[:id])
+
+		if @advisor.update(advisor_params)
+			redirect_to current_user, notice: 'Your profile has been updated'
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		@advisor = Advisor.find(params[:id])
+		@advisor.destroy
+
+		redirect_to advisors_path, notice: 'Record deleted'
+	end
 
 
 
-private
-def advisor_params
-	params.require(:advisor).permit(:idea, :market, :product, :launch, :revenue, :profitable, :scaling, :sale, :avatar, :name, :linkedin, :summary, :sector, :startupExperience, :bandwidth, :stage, :expertise, :public, :referred, :quality, :email, :featured)
-end
+	private
+	def advisor_params
+		params.require(:advisor).permit(:idea, :market, :product, :launch, :revenue, :profitable, :scaling, :sale, :avatar, :name, :linkedin, :summary, :sector, :startupExperience, :bandwidth, :stage, :expertise, :public, :referred, :quality, :email, :featured)
+	end
 
 end

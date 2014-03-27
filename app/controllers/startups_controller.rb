@@ -5,24 +5,21 @@ class StartupsController < ApplicationController
 	end
 
 	def index
-		if signed_in?
-			if current_user.admin?
-				@startups = Startup.all
-			end
-		else
-				@startups = Startup.where(:featured => true)
-		end
+		@startups = Startup.where(:featured => true)
 	end
 
 
-	def create
-		#render text: params[:startup].inspect
 
-	@startup = Startup.new(startup_params)
-	@startup.user_id = current_user.id
-	@startup.save
-	redirect_to current_user
-end
+
+	def create
+		@startup = Startup.new(startup_params)
+
+		if @startup.save
+			redirect_to @current_user, notice: 'Profile was successfully created.'
+		else
+			render action: 'new'
+		end
+	end
 
 
 def show
@@ -32,25 +29,25 @@ end
 
 def edit
 	@startup = Startup.find(params[:id])
-
 end
+
 
 def update
 	@startup = Startup.find(params[:id])
 
 	if @startup.update(startup_params)
-		redirect_to current_user
+		redirect_to current_user, notice: 'Your profile has been updated'
 	else
 		render 'edit'
-
 	end
 end
+
 
 def destroy
   @startup = Startup.find(params[:id])
   @startup.destroy
  
-  redirect_to startups_path
+  redirect_to startups_path, notice: 'Profile removed'
 end
 
 
