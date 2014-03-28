@@ -15,7 +15,7 @@ class StartupsController < ApplicationController
 		@startup = Startup.new(startup_params)
 
 		if @startup.save
-			redirect_to @current_user, notice: 'Profile was successfully created.'
+			redirect_to current_user, notice: 'Profile was successfully created.'
 		else
 			render action: 'new'
 		end
