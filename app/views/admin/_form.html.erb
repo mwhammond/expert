@@ -1,0 +1,169 @@
+<%= form_for @startup, :html => { :multipart => true } do |f| %>
+
+<h1>Complete your profile</h1>
+<div class="row mt">
+  <div class="col-lg-5">
+
+    <div class="form-group">
+
+
+      
+
+      <% if @startup.errors.any? %>
+
+      <div id="error_explanation">
+
+        <h2><%= pluralize(@startup.errors.count, "error") %> prohibited
+          this post from being saved:</h2>
+
+          <ul>
+            <% @startup.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+
+        <h3>Your business details</h3>
+
+         <p>
+          <%= f.label :name, "Company name" %><br>
+          <%= f.text_field :name, size: "20x1" %>
+        </p>
+
+       <p>
+        <%= f.label :bio, "2-3 lines describing your business for your profile" %><br>
+        <%= f.text_area :bio, size: "60x2" %>
+      </p>
+
+             <p>
+        <%= f.label :founded, "Roughly when was the company founded?" %><br>
+        <%= f.date_select :founded, discard_day: true %>
+       </p>
+
+
+         <p>
+          <%= f.label :sector, "Which sector(s) does you business cover (comma seperated)" %><br>
+          <%= f.text_field :sector, size: "45x1" %>
+        </p>
+
+
+              <p>
+        <%= f.label :link, "Link to website" %><br>
+        <%= f.text_field :link, size: "30x1" %>
+      </p>
+
+            <p>Upload a photo or logo (optional)
+      <%= f.file_field :avatar %>
+      </p>
+
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-5 col-lg-offset-1">
+
+
+
+
+
+    
+
+
+        <br>
+        <p>Which stage best describes your business?</p>
+
+        <div class="control-group">
+          <div class="controls">
+
+            <%= f.check_box :idea %>
+            <%= f.label :idea, "Idea stage" %>
+
+            <%= f.check_box :market %>
+            <%= f.label :market, "Market discovery" %>
+
+            <%= f.check_box :product %>
+            <%= f.label :product, "Product refinement" %>
+
+            <%= f.check_box :launch %>
+            <%= f.label :launch, "Launch" %>
+
+            <%= f.check_box :revenue %>
+            <%= f.label :revenue, "In Revenue" %>
+
+            <%= f.check_box :profitable %>
+            <%= f.label :profitable, "Profitable" %>
+
+            <%= f.check_box :scaling %>
+            <%= f.label :scaling, "Scaling" %>
+
+            <%= f.check_box :sale %>
+            <%= f.label :sale, "Sale" %>
+
+          </div>
+        </div>
+
+      <h3>Your needs</h3>
+
+          <p>
+          <%= f.label :requests, "A detailed description of the expertise required" %><br>
+          <%= f.text_area :requests, size: "60x2" %>
+
+        </p>
+
+
+        <br>
+
+
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :updates %>
+          Recieve weekly update on new start-ups and advisors
+        </label>
+      </div>
+
+
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :public %>
+          Make my profile visible to advisors
+        </label>
+      </div>
+
+
+
+
+      <% if current_user.admin? %>
+
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :quality %>
+          Passed the quality filter
+        </label>
+      </div>
+
+
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :featured %>
+          Featured startup
+        </label>
+      </div>
+
+      <% end %>
+      <!-- This copies over the details from the user creating the startup but less hassle than using the link each time. Maybe change later-->
+
+      <%= f.hidden_field :name, :value => current_user.name %>
+      <%= f.hidden_field :email, :value => current_user.email %>
+
+      <p>
+
+        <%= f.submit "Create Profile", :class => "btn btn-success" %>
+      </p>
+      
+
+    </div>
+  </div>
+
+  <% end %>

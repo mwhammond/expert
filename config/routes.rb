@@ -6,6 +6,7 @@ Expert::Application.routes.draw do
 resources :startups
 resources :advisors
 resources :users
+resources :admin
 
 get "home/advisorsignup"
 get "home/startupsignup"
