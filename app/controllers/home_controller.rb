@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
 
   	def index
-		@featuredadvisors = Advisor.where(:featured => true)
+		@featuredadvisors = Advisor.all #where(:featured => true)
+		@featuredstartups = Startup.all #where(:featured => true)
 	end
 
 	def advisorsignup

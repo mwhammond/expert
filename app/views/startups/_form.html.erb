@@ -154,9 +154,6 @@
       <% end %>
       <!-- This copies over the details from the user creating the startup but less hassle than using the link each time. Maybe change later-->
 
-      <%= f.hidden_field :name, :value => current_user.name %>
-      <%= f.hidden_field :email, :value => current_user.email %>
-
       <p>
 
         <%= f.submit "Create Profile", :class => "btn btn-success" %>

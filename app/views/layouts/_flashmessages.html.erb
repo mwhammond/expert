@@ -1,6 +1,6 @@
-<div class="container">
-<br>
-<br>
+ <div id="flash">
+  <div class="container">
+    <div class="row centered">
 <% unless flash[:notice].blank? %>
  <div class="alert alert-success fade in">
    <a class="close" data-dismiss="alert" href="#">&times;</a>
@@ -24,3 +24,9 @@
 <% end %>
 <br>
 </div>
+</div>
+</div>
+
+<script>
+$(".alert").fadeOut(2000);
+</script>

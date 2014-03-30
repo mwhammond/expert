@@ -19,39 +19,11 @@
 
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/">advsr</a> 
-			</div>
-			<div class="navbar-collapse navbar-inverse collapse">
-				<ul class="nav navbar-nav navbar-inverse navbar-right">
-					<li><%= link_to "Startups", startups_path %></li>
-					<li><%= link_to "Advisors", advisors_path %></li>
-					<li><%= link_to "About", home_about_path %></li>
-					<% if user_signed_in? %>
-					<li><%= link_to "My Profile", current_user %></li>
-					<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-					<% else %>
-					<li><%= link_to "Sign in", user_session_path %></li>
-					<% end %>
-				</ul>
-			</div>
-		</div>
-	</div>
 
+    <%= render "layouts/navbar" %>
 	<%= render "layouts/flashmessages" %>
 
-
 	<%= yield %>
-
-
-
 
 	<%= render :partial => "layouts/footer" %>
 

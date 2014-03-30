@@ -5,7 +5,7 @@ class StartupsController < ApplicationController
 	end
 
 	def index
-		@startups = Startup.where(:featured => true)
+		@startups = Startup.all #where(:featured => true)
 	end
 
 

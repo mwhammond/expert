@@ -15,6 +15,9 @@ gem 'rails_12factor', group: :production
 # Use postgres for database
 gem 'pg'
 
+# allows ENV variables to be set in yml file
+gem 'figaro'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

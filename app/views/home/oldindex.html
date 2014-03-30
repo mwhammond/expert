@@ -1,0 +1,113 @@
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">advsr</a> 
+			</div>
+			<div class="navbar-collapse navbar-inverse collapse">
+				<ul class="nav navbar-nav navbar-inverse navbar-right">
+					<li><%= link_to "Startups", startups_path %></li>
+					<li><%= link_to "Advisors", advisors_path %></li>
+					<li><%= link_to "About", home_about_path %></li>
+					<% if user_signed_in? %>
+					<li><%= link_to "My Profile", current_user %></li>
+					<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+					<% else %>
+					<li><%= link_to "Sign in", user_session_path %></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+<!-- BENEFITS -->
+<div id="services">
+ <div class="container">
+  <div class="row mt">
+
+   <div class="col-lg-7">
+    <h2>Advisors are critical to start-up success</h2>
+    <br>
+    <p>At <a href="http://www.imperialinnovations.co.uk">Imperial Innovations</a> we invest in early stage, high growth start-ups. We regularly meet <b>amazing teams</b> that unfortunately lack the right connections to fully understand the drivers, structure and incentives of their desired market vertical. We also meet a large number of <b>senior industry professionals</b> who are keen to work with start-ups to add value and enable disruption within their industries.
+
+      <h3>The current solution limits high potential start-ups</h3>  
+
+      <p>Unfortunately finding each other can take many months of random networking events, often significant cost and is highly dependent on the local maxima of individual networks. We thought that there must be a better way.</p>
+
+      <h3>A new fast, effective approach</h3>
+
+      <p>Our vision to enable online, direct connections between key industry figures who understand innovation and the high quality start-ups that are best placed to implement disruptive solutions. If you would like to learn more we are currently in beta but accepting pre-registrations; <%= link_to "register your startup", home_startupsignup_path %> or <%= link_to "apply to be an advisor", home_startupsignup_path %>. </p>
+    </div>
+
+    <div class="col-lg-4 col-lg-offset-1">
+
+      <%= image_tag("listening.jpg", class: "img-responsive") %>
+
+    </div>
+
+
+  </div><!-- row -->
+</div><!-- container -->
+</div><!-- further information -->
+
+
+<!-- CASE STUDIES -->
+
+<div id="matches">
+  <div class="container">
+   <div class="row mt">
+    <div class="col-lg-12">
+     <h1>Recent matches</h1>
+   </div><!-- col-lg-12 -->
+   <div class="col-lg-8">
+     <p>High quality early stage ventures which we have recently connected to sector expertise.</p>
+   </div><!-- col-lg-8-->
+   <div class="col-lg-4 goright">
+   </div>
+ </div><!-- row -->
+
+ <div class="row mt">
+  <div class="col-lg-4">
+   <%= image_tag("washingmachine.jpg", class: "img-responsive") %>
+
+   <h3>Aqdot</h3>
+   <p><b>Case study:</b> FMCG<p>
+    <p>Aqdot is a Cambridge based spin out that has developed novel fabrication technology for smart capsules that possess customisable properties to suit the needs of a variety of industries. Neil MacGilp who had spent 30 years at Procter & Gamble worked with the team to position the technology for adoption in the FMCG industry. On the back of this Aqdot were able to successfully close a £1m funding round.</p>
+    <p><a href="http://www.aqdot.com" target="_blank">Aqdot.com</a></p>
+  </div>
+  <div class="col-lg-4">
+    <%= image_tag("elderly.jpg", class: "img-responsive") %>
+
+
+    <h3>Gyro Glove</h3>
+    <p><b>Case study:</b> Engineering & healthcare<p>
+     <p>Gyroglove stabilises Parkinson's tremors allowing patients to live a more normal life. This early stage accelerator based team brings together medical and engineering expertise but required an understanding of manufacturing at scale and selling in to the NHS. Ian Church was able to provide this expertise with 20 years in hitech engineering as well as 8 years leading healthcare firm CSH Surrey. </p>
+     <p><a href="http://www.imperialcreatelab.com/portfolios" target="_blank">ImperialCreateLab.com</a></p>
+   </div>
+   <div class="col-lg-4">
+     <%= image_tag("refinery.jpg", class: "img-responsive") %>
+
+
+     <h3>Econic</h3>
+     <p><b>Case study:</b> Polymers<p>
+      <p>Econic is developing a new catalyst technology that enables CO2 to replace petrochemical feedstock in plastic precursors. Advisor David Morgan began working with the technologist founders to provide catalyst industry expertise and financial strategy including the opportunity to outsource the catalyst manufacture. The company has raised over $12m in venture funding since his involvement.</p>
+      <p><a href="http://www.econic-technologies.com" target="_blank">Econic-technologies.com</a></p>
+    </div>		
+  </div><!-- row -->
+
+
+  <div class="row mt">
+   <div class="col-lg-12">
+    <br>
+    <%= button_to "Register your startup", home_startupsignup_path, :class => "btn btn-success btn-lg pull-right", :method => :get %>
+  </div>
+
+
+</div>	
+
+</div><!-- container -->
+</div>
