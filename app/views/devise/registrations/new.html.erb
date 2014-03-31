@@ -1,23 +1,42 @@
 
-<h2>Create a profile</h2>
+  
+  <div class="login-body">
+
+    <div class="container">
+
+      <div class="form-signin">
+        <h2 class="form-signin-heading">register</h2>
+        <div class="login-wrap">
+            <p>Create an advsr account</p>
+                <%= form_for(resource, :as => resource_name, :class => "form-signin", :url => registration_path(resource_name)) do |f| %>
+  		<%= devise_error_messages! %>
+            <p><%= f.email_field :email, :autofocus => true, :class => "form-control", :placeholder => "email" %></p>
+            <p><%= f.password_field :password, :autofocus => true, :class => "form-control", :placeholder => "password" %></p>
+            <p><%= f.password_field :password_confirmation, :autofocus => true, :class => "form-control", :placeholder => "confirm password" %></p>
+
+            <p><%= f.submit "Register", :class => "btn btn-lg btn-login btn-block" %></p>
+            <% end %>
+            
+
+            <div class="registration">
+                Already Registered.
+                <a class="" href="login.html">
+                    Login
+                </a>
+            </div>
+
+        </div>
+
+    </div>
 
 
-<p>If you already registered <%= link_to 'sign in', user_session_path %> otherwise create a proile below</p>
+  </div>
 
-<p>Part 1 of 2</p>
+  <br>
+  <br>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Register" %></div>
-<% end %>
 
