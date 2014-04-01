@@ -49,7 +49,7 @@ class AdvisorsController < ApplicationController
 
 	private
 	def advisor_params
-		params.require(:advisor).permit(:idea, :market, :product, :launch, :revenue, :profitable, :scaling, :sale, :avatar, :name, :linkedin, :summary, :sector, :startupExperience, :bandwidth, :stage, :expertise, :public, :referred, :quality, :email, :featured)
+		params.require(:advisor).permit(:user_id, :idea, :market, :product, :launch, :revenue, :profitable, :scaling, :sale, :avatar, :name, :linkedin, :summary, :sector, :startupExperience, :bandwidth, :stage, :expertise, :public, :referred, :quality, :email, :featured)
 	end
 
 end

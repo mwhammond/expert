@@ -54,7 +54,7 @@ end
 
 private
 def startup_params
-	params.require(:startup).permit(:idea, :market, :product, :launch, :revenue, :profitable, :scaling, :sale, :avatar, :updates, :name, :link, :bio, :sector, :founded, :capital, :stage, :requests, :public, :casestudy, :quality, :email, :featured)
+	params.require(:startup).permit(:user_id, :idea, :market, :product, :launch, :revenue, :profitable, :scaling, :sale, :avatar, :updates, :name, :link, :bio, :sector, :founded, :capital, :stage, :requests, :public, :casestudy, :quality, :email, :featured)
 end
 
 end

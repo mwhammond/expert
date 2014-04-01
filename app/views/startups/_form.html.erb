@@ -152,7 +152,8 @@
       </div>
 
       <% end %>
-      <!-- This copies over the details from the user creating the startup but less hassle than using the link each time. Maybe change later-->
+
+      <%= f.hidden_field :user_id, :value => current_user.id %>
 
       <p>
 
