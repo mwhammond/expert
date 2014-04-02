@@ -1,9 +1,9 @@
   <div id="lg">
     <div class="container">
       <div class="row centered">
-          <h1>Connecting sector expertise with disruptive start-ups</h1>
-          
-          <h3>Unlock market access, funding and top level NEDs. <%= link_to "Sign up", new_user_path %></h3>
+        <h1>Connecting sector expertise with disruptive start-ups</h1>
+
+        <h3>Unlock market access, funding and top level NEDs. <%= link_to "Sign up", new_user_path %></h3>
 
       </div>
       <br>
@@ -20,16 +20,36 @@
         <% @featuredstartups.each do |startup| %>
 
         <div class="panel">
-          <%= image_tag startup.avatar.url(:medium), class: "img-responsive" %>
+        
+          <%= link_to image_tag(startup.avatar.url(:medium), class: "img-responsive"), startup %>
           <div>
-            <h3><%= startup.name %></h3>
-            <p><b><%= startup.sector %></b><p>
-              <p><%= startup.bio %></p>
-              <a href="#"><i class="fa fa-unlink"></i> connect </a>
-              <div>
-              <%= image_tag "JamieHeywood.jpg", width: "40", height: "40", class: "img-circle" %>
-              <%= image_tag "davidmorgan.jpg", width: "40", height: "40", class: "img-circle" %>
-            </div>
+            <div class="panel-inner">
+
+              <h3><%= link_to startup.name, startup%></h3>
+
+              <p><b><%= startup.sector %></b><p>
+                <p><%= startup.bio %></p>
+                <p><b>Searching for:</b> R&D guidance in FMCG & Chemicals sector</p>
+                <p><b>Supporters: </b><a href="#">Kelsey Lyn, Mark Hammond, Tony Williams</a></p>
+                <div class="panel-bottom">
+                  <div class="row">
+
+                    <div class="col-sm-4">
+                      <a href="#"><i class="fa fa-envelope"></i> message   </a>
+                    </div>
+                    <div class="col-sm-4">
+                      <a href="#"><i class="fa fa-mail-forward"></i> refer  </a>
+                    </div>
+                    <div class="col-sm-4">
+                      <a href="#"><i class="fa fa-plus-square"></i> follow  </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+
+                </div>
+              </div>
             </div>
             <br>
           </div>
