@@ -1,50 +1,122 @@
    <div id="innerpage">
     <div class="container">
+
+
+
+
+
       <div class="col-lg-8">
-     
-      <h1>Dashboard</h1>
-      <br>
-      <p>Hi <%=@user.name%>,</p>
 
-      <p>This area will allow you to view matches and update preferences and profiles but not everything is quite ready yet! Thank you for your patience and we'll update you soon!</p>
+         <h1>Your profiles</h1>
+         <br>
 
-      <br>
-      
+         <section class="panel tasks-widget">
+           <header class="panel-heading">
+                     <%if @advisorrecords.empty? && @startuprecords.empty? %>
+                     <br>
+            <p>Hello, lets get started by adding a profile either about your startup or where you can add value as an advisor.</p>
 
-      <h3>Your profiles</h3>
-      <br>
+            <%else%>
+            Profiles
+         <%end%>
 
-      <% if @advisorrecords %>
-      <% @advisorrecords.each do |advisorlisting| %>
-      <p><%= link_to "Edit your advisor profile", edit_advisor_path(advisorlisting) %></p>
-      <% end %>
+         </header>
 
-      <% else %>
-      <p>You haven't created any advisor profiles yet</p>
-  
-      <% end %>
 
-      <% if @startuprecords %>
-      <% @startuprecords.each do |startuplisting| %>
-      <p><%= link_to "Edit your startup profile", edit_startup_path(startuplisting) %></p>
-      <% end %>
 
-      <% else %>
-      <p>You haven't created any startup profiles yet</p>
-  
-      <% end %>
-      
+         <div class="panel-body">
 
-      
+            <div class="task-content">
 
-      <p>- - - - - - - - - - - - - - - -</p>
+             <ul class="task-list">
 
-      <p><%= link_to "+ Add a startup Profile", new_startup_path %></p>
-      <p><%= link_to "+ Add a advisor profile", new_advisor_path %></p>
+                <% if @advisorrecords %>
+                <% @advisorrecords.each do |advisorlisting| %>
+
+           <li>
+
+             <div class="task-title">
+                <span class="task-title-sp"><%=advisorlisting.sector%></span>
+                <span class="badge badge-sm label-warning">Advisor</span>
+                
+                  <% if advisorlisting.public %>
+                  <span class="badge badge-sm label-success">live</span>
+                  <%else%>
+                  <span class="badge badge-sm label-warning">pending review</span>
+                  <%end%>
+
+                  <div class="pull-right hidden-phone">
+
+                  <%= link_to "edit", edit_advisor_path(advisorlisting), :class =>"btn btn-primary btn-xs" %>
+
+                  <%= link_to advisor_path(advisorlisting), :class=>"btn btn-danger btn-xs",
+                    method: :delete, data: { confirm: 'This is permenant, are you sure?' } do %>
+                     <i class="fa fa-trash-o "></i>
+                    <%end%>
+               </div>
+            </div>
+         </li>
+
+           <%end%>
+           <%end%>
+
+           <% if @startuprecords %>
+           <% @startuprecords.each do |startuplisting| %>
+
+           <li>
+
+             <div class="task-title">
+                <span class="task-title-sp"><%=startuplisting.name%></span>
+                <span class="badge badge-sm label-success">Startup</span>
+                
+                  <% if startuplisting.public %>
+                  <span class="badge badge-sm label-success">live</span>
+                  <%else%>
+                  <span class="badge badge-sm label-warning">pending review</span>
+                  <%end%>
+                  <div class="pull-right hidden-phone">
+                  <%= link_to "edit", edit_startup_path(startuplisting), :class =>"btn btn-primary btn-xs" %>
+
+                  <%= link_to startup_path(startuplisting), :class=>"btn btn-danger btn-xs",
+                    method: :delete, data: { confirm: 'This is permenant, are you sure?' } do %>
+                     <i class="fa fa-trash-o "></i>
+                    <%end%>
+               </div>
+            </div>
+         </li>
+
+
+      </ul>
+      <%end%>
+      <%end%>
+
+
    </div>
-</div>
-</div>
 
+   <div class="add-task-row">
+    <%= link_to "Add a startup Profile", new_startup_path, :class => "btn btn-success btn-md pull-left" %>
+    <%= link_to "Add an advisor profile", new_advisor_path, :class => "btn btn-warning btn-md pull-left" %>
+ </div>
+</div>
+</section>
 
 <br>
 <br>
+
+<section class="panel tasks-widget">
+           <header class="panel-heading">
+            <h3>Your matches</h3>
+           </header>
+           <div class="panel-body">
+           <p>This section is under development. When another user accepts your connections details will be emailed to you.</p>
+         </div>
+
+</section>
+
+</div>  
+</div>
+
+
+
+
+</div>

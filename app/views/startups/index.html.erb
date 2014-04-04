@@ -2,71 +2,29 @@
 
 
 
- <!-- ADVISORS -->
+<div id="innerpage">
+  <div class="container">
+    <div class="row mt">
+      <div class="col-lg-8">
 
-  <div id="innerpage">
-    <div class="container">
-      <div class="row mt">
-        <div class="col-lg-8">
-          
-          <h1>Featured startups</h1>
-            <p>This just only sample of the high quality start-ups that are looking for industry expertise. To browse all startups you must <%= link_to "register as an advisor", home_advisorsignup_path %>. Alternitavely if you own or manage a start-up with specific insight and expertise requirements <%= link_to "we would love to hear from you", home_advisorsignup_path %>.</p>
+        <h1>Startups looking for expertise</h1>
+        <p>Can add value to a startup? Click connect on any profile below to show that startup your profile. If the team also think that you could be a good fit contact details will be exchanged. Not signed up yet? <%= link_to "Sign up here", new_user_path %>. </p>
 
-            <% if can? :update, @startup %>
+      </div>
 
-            <h3><%= link_to '+ Add new startup', new_startup_path %></h3>
+    </div>
 
-            <% end %>
+    <div class="row mt">
 
-          </div>
+      <%= render "/home/featuredstartups", :startups => @startups %>
 
-        </div>
-
-        <div class="row mt">
-
-          <br>
-
-          <% if @startups %> 
-          <% @startups.each do |startup| %>
-        
-          <div class="col-lg-3">
-            
-            <%= image_tag startup.avatar.url(:medium), class: "img-responsive" %>
-            <h3><%= startup.name %></h3>
-            <p><b><%= startup.sector %></b><p>
-              <p><%= startup.bio %></p>
-              <p><%= startup.requests %></p>
-             
-                
-                <% if can? :update, @startup %>
-
-      <p><%= link_to 'Edit', edit_startup_path(startup) %> | 
-      <%= link_to 'Delete', startup_path(startup),
-                    method: :delete, data: { confirm: 'Are you sure?' } %> </p>
-
-                <% end %>
-              
-          </div>
-
-          <%end%>
-
-          <%else%>
-          <p>We seem to have temporarily lost the records?</p>
-          <%end%>
-
-
-                <div class="row mt">
-                    <div class="col-lg-12">
-                      <br>
-    
-
-
-                    </div>    
-                  </div>
-
+      <br>
+      <br>
 <br>
 <br>
-              </div>
-            </div>    
+    </div>
+  </div>  
+</div>  
 
-            <%= render :partial => "layouts/getnotified" %>
+
+<%= render :partial => "layouts/getnotified" %>

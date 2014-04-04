@@ -3,91 +3,60 @@
       <div class="row centered">
         <h1>Connecting sector expertise with disruptive start-ups</h1>
 
-        <h3>Unlock market access, funding and top level NEDs. <%= link_to "Sign up", new_user_path %></h3>
-
+        <h3>Unlock connections for market access, funding and top level NEDs. <%= link_to "Find out more.", home_about_path %>  </h3>
+          
+          <%if !user_signed_in?%>
+          <p>We are currently in closed beta. You can request an invite here or if you have a code <%= link_to "sign in here", new_user_path %>.
+          </p>
+          <%end%>
+          
       </div>
       <br>
 
 
+      <%= render "featuredstartups", :startups => @startups %>
 
+      <br>
+      <br>
+      <br>
+      <h3><%=link_to "Browse and search all startups >", startups_path%></h3>
+      <br>
+      <br>
+      <%= render "featuredadvisors", :advisors => @advisors %>
+      <br>
+      <br>
+      <h3><%=link_to "Browse and search all advisors >", advisors_path%></h3>
 
-
-
-
-      <div class="row centered">
-
-        <% if @featuredstartups %>
-        <% @featuredstartups.each do |startup| %>
-
-        <div class="panel">
-        
-          <%= link_to image_tag(startup.avatar.url(:medium), class: "img-responsive"), startup %>
-          <div>
-            <div class="panel-inner">
-
-              <h3><%= link_to startup.name, startup%></h3>
-
-              <p><b><%= startup.sector %></b><p>
-                <p><%= startup.bio %></p>
-                <p><b>Searching for:</b> R&D guidance in FMCG & Chemicals sector</p>
-                <p><b>Supporters: </b><a href="#">Kelsey Lyn, Mark Hammond, Tony Williams</a></p>
-                <div class="panel-bottom">
-                  <div class="row">
-
-                    <div class="col-sm-4">
-                      <a href="#"><i class="fa fa-envelope"></i> message   </a>
-                    </div>
-                    <div class="col-sm-4">
-                      <a href="#"><i class="fa fa-mail-forward"></i> refer  </a>
-                    </div>
-                    <div class="col-sm-4">
-                      <a href="#"><i class="fa fa-plus-square"></i> follow  </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-
-                </div>
-              </div>
-            </div>
-            <br>
-          </div>
-
-          <%end%>
-          <%end%>
-
-        </div>
-      </div>
-    </div>
-
-
-
-    <div id="social">
-      <div class="container">
-       <div class="row centered">
-        <h4>Our innovation partners</h4>
-        <br>
-        <div class="col-lg-2 col-lg-offset-1">
-          <%= image_tag "aviva.jpg", height: "100" %>
-        </div>
-        <div class="col-lg-2">
-          <%= image_tag "unilever.gif", height: "100" %>
-        </div>
-        <div class="col-lg-2">
-          <%= image_tag "ibm.jpg", height: "100" %>
-        </div>
-        <div class="col-lg-2">
-          <%= image_tag "samsung.jpg", height: "100" %>
-        </div>
-        <div class="col-lg-2">
-          <%= image_tag "kpmg.jpg", height: "100" %>
-        </div>
-      </div>
     </div>
   </div>
 
-  <%= render :partial => "layouts/getnotified" %>
+
+
+  <div id="social">
+    <div class="container">
+     <div class="row centered">
+      <h4>Our innovation partners</h4>
+      <br>
+      <div class="col-lg-2 col-lg-offset-1">
+        <%= image_tag "aviva.jpg", height: "100" %>
+      </div>
+      <div class="col-lg-2">
+        <%= image_tag "unilever.gif", height: "100" %>
+      </div>
+      <div class="col-lg-2">
+        <%= image_tag "ibm.jpg", height: "100" %>
+      </div>
+      <div class="col-lg-2">
+        <%= image_tag "samsung.jpg", height: "100" %>
+      </div>
+      <div class="col-lg-2">
+        <%= image_tag "kpmg.jpg", height: "100" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render :partial => "layouts/getnotified" %>
 
 
 

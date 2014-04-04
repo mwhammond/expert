@@ -11,6 +11,7 @@ resources :admin
 get "home/advisorsignup"
 get "home/startupsignup"
 get "home/about"
+get "home/apply"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

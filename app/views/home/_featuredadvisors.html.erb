@@ -1,49 +1,37 @@
- <!-- ADVISORS -->
 
-  <div id="white">
-  	<div class="container">
-  		<div class="row mt">
-  			<div class="col-lg-8">
-  				<h1>Featured advisors</h1>
+<div class="row centered">
 
-  				<p>Advisors cover a wide range of sectors including <b>retail, FMCG, oil & gas, pharma, advertising, automotive, health, finance</b> as well as technical expertise ranging from scaling databases to drones. <a href="#lc">Sign-up below</a> to search across all advisors or submit a request. 
-  					<br>
+  <% if advisors %>
+  <% advisors.each do |advisor| %>
 
-  				</div>
+  <div class="advisorpanel">
 
-  			</div>
+    <%= link_to image_tag(advisor.avatar.url(:medium), class: "img-responsive"), advisor %>
+    <div>
+      <div class="advisorpanel-inner">
 
-  			<div class="row mt">
+        <h3><%= link_to advisor.name, advisor%></h3>
 
-          <br>
+        <p><b><%= advisor.name %></b><p>
+          <p><b>Expertise:</b> <%=advisor.sector%></p>
+          <p><%= advisor.summary %></p>
+          
+          <div class="advisorpanel-bottom centered">
+            <div class="row">
+                              <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-xs centered", method: :update %>
 
-          <% if @featuredadvisors %>
-  				<% @featuredadvisors.each do |advisor| %>
-				
-  				<div class="col-lg-3">
-  					
-  					<%= image_tag advisor.avatar.url(:thumb), class: "img-responsive" %>
-  					<h3><%= advisor.name %></h3>
-  					<p><b><%= advisor.sector %></b><p>
-  						<p><%= advisor.summary %></p>
-  						
-  				</div>
+            </div>
+          </div>
 
-  				<%end%>
-          <%end%>
+          <div>
 
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
 
-  							<div class="row mt">
-      							<div class="col-lg-12">
-      								<br>
-                      <!-- SHOULD CHECK IF LOGGED IN FIRST-->
+    <%end%>
+    <%end%>
 
-                                    <%= button_to "Register your startup", home_advisorsignup_path, :class => "btn btn-success btn-lg pull-right", :method => :get %>
-      							</div>
-
-  							</div>			
-
-<br>
-<br>
-  						</div>
-  					</div>
+  </div>

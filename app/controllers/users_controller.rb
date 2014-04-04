@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
 
+
 def new
 	redirect_to "/users/sign_up"
 end
@@ -15,9 +16,6 @@ def show
 	@advisorrecords = Advisor.where(:user_id => current_user.id)
 	@startuprecords = Startup.where(:user_id => current_user.id)
 end
-
-
-
 
 
 

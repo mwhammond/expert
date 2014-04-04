@@ -1,167 +1,180 @@
-<%= form_for @startup, :html => { :multipart => true } do |f| %>
+   <div id="innerpage">
+    <div class="container">
+      <div class="col-lg-8">
+       <section class="panel tasks-widget">
+         <header class="panel-heading">
+          <h2>Startup profile</h2>
+         </header>
 
-<h1>Complete your profile</h1>
-<div class="row mt">
-  <div class="col-lg-5">
+         <div class="panel-body">
 
-    <div class="form-group">
+           <%= form_for @startup, :html => { :multipart => true } do |f| %>
+
+           <div class="row mt">
+            <div class="col-lg-5">
+
+              <div class="form-group">
+
+                <% if @startup.errors.any? %>
+
+                <div id="error_explanation">
+
+                  <h2><%= pluralize(@startup.errors.count, "error") %> prohibited
+                    this post from being saved:</h2>
+
+                    <ul>
+                      <% @startup.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                  <% end %>
+
+                  <h3>Your business details</h3>
+
+                  <p>
+                    <%= f.label :name, "Company name" %><br>
+                    <%= f.text_field :name, size: "30x1" %>
+                  </p>
+
+                  <p>
+                    <%= f.label :bio, "2-3 lines describing your business" %><br>
+                    <%= f.text_area :bio, size: "30x2" %>
+                  </p>
+
+                  <p>
+                    <%= f.label :founded, "Approximate founding date?" %><br>
+                    <%= f.date_select :founded, discard_day: true %>
+                  </p>
 
 
-      
+                  <p>
+                    <%= f.label :sector, "Most relavent sector" %><br>
+                    <%= f.select(:sector, [['Advertising, sales, marketing',1],['Agriculture',2],['Automotive & Transportation',3],['Business Intelligence',4],['Chemicals & Materials',5],['Cleantech - Biofuels and Biomaterials',6],['Cleantech - Energy Efficiency',7],['Cleantech - Renewables',8],['Education & Training',9],['Entertainment & Media',10],['Fashion',11],['Financial Services & Payments',12],['Health and Wellness',13],['Household & Personal Products',14],['ICT Hardware & Equipment',15],['Industrial Equipment & Services',16],['Information & Data Analytics',17],['Medical Technologies & Services',18],['Networking',19],['Oil & Gas',20],['Security (digital)',21],['Security (real world)',22],['Social Media & Gaming',24],['Software & IT Services',25],['Supply Chain and logistics',26],['Telecoms',27],['Therapeutics',28]]) %>
 
-      <% if @startup.errors.any? %>
+                  </p>
 
-      <div id="error_explanation">
 
-        <h2><%= pluralize(@startup.errors.count, "error") %> prohibited
-          this post from being saved:</h2>
 
-          <ul>
-            <% @startup.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+
+                  <p>
+                    <%= f.label :link, "Link to website" %><br>
+                    <%= f.text_field :link, size: "30x1" %>
+                  </p>
+
+
+
+
+                </div>
+
+              </div>
+
+              <div class="col-lg-5 col-lg-offset-1">
+
+                                  <p>Upload a photo or logo (optional)
+                    <%= f.file_field :avatar %>
+                  </p>
+
+                <br>
+                <p>Which stage best describes your business?</p>
+
+
+
+                <div class="control-group">
+                  <div class="controls">
+
+                    <%= f.check_box :idea %>
+                    <%= f.label :idea, "Idea stage" %>
+
+                    <%= f.check_box :market %>
+                    <%= f.label :market, "Market discovery" %>
+
+                    <%= f.check_box :product %>
+                    <%= f.label :product, "Product refinement" %>
+
+                    <%= f.check_box :launch %>
+                    <%= f.label :launch, "Launch" %>
+
+                    <%= f.check_box :revenue %>
+                    <%= f.label :revenue, "In Revenue" %>
+
+                    <%= f.check_box :profitable %>
+                    <%= f.label :profitable, "Profitable" %>
+
+                    <%= f.check_box :scaling %>
+                    <%= f.label :scaling, "Scaling" %>
+
+                    <%= f.check_box :sale %>
+                    <%= f.label :sale, "Sale" %>
+
+                  </div>
+                </div>
+
+                <h3>Your needs</h3>
+
+                <p>
+                  <%= f.label :requests, "A detailed description of the expertise required" %><br>
+                  <%= f.text_area :requests, size: "30x2" %>
+
+                </p>
+
+
+                <br>
+
+
+                <div class="checkbox">
+                  <label>
+                    <%= f.check_box :updates %>
+                    Recieve weekly update on new start-ups and advisors
+                  </label>
+                </div>
+
+
+                <% if current_user.admin? %>
+
+                <h3>Admin options</h3>
+
+                <div class="checkbox">
+                  <p>
+                    <%= f.label :quality, "Rating (1-5)" %><br>
+                    <%= f.text_field :quality, size: "3x1" %>
+                  </p>
+                </div>
+
+
+                <div class="checkbox">
+                  <label>
+                    <%= f.check_box :featured %>
+                    Featured startup
+                  </label>
+                </div>
+
+                 <div class="checkbox">
+                  <label>
+                    <%= f.check_box :public %>
+                    Make public
+                  </label>
+                </div>
+
+                <% end %>
+
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+
+                <p>
+                  <br>
+                  <%= f.submit "Create Profile", :class => "btn btn-success pull-right" %>
+                </p>
+
+
+              </div>
+            </div>
+
             <% end %>
-          </ul>
-        </div>
-        <% end %>
-
-        <h3>Your business details</h3>
-
-         <p>
-          <%= f.label :name, "Company name" %><br>
-          <%= f.text_field :name, size: "20x1" %>
-        </p>
-
-       <p>
-        <%= f.label :bio, "2-3 lines describing your business for your profile" %><br>
-        <%= f.text_area :bio, size: "60x2" %>
-      </p>
-
-             <p>
-        <%= f.label :founded, "Roughly when was the company founded?" %><br>
-        <%= f.date_select :founded, discard_day: true %>
-       </p>
-
-
-         <p>
-          <%= f.label :sector, "Which sector(s) does you business cover (comma seperated)" %><br>
-          <%= f.text_field :sector, size: "45x1" %>
-        </p>
-
-
-              <p>
-        <%= f.label :link, "Link to website" %><br>
-        <%= f.text_field :link, size: "30x1" %>
-      </p>
-
-            <p>Upload a photo or logo (optional)
-      <%= f.file_field :avatar %>
-      </p>
-
-
-      </div>
-
-    </div>
-
-    <div class="col-lg-5 col-lg-offset-1">
-
-
-
-
-
-    
-
-
-        <br>
-        <p>Which stage best describes your business?</p>
-
-        <div class="control-group">
-          <div class="controls">
-
-            <%= f.check_box :idea %>
-            <%= f.label :idea, "Idea stage" %>
-
-            <%= f.check_box :market %>
-            <%= f.label :market, "Market discovery" %>
-
-            <%= f.check_box :product %>
-            <%= f.label :product, "Product refinement" %>
-
-            <%= f.check_box :launch %>
-            <%= f.label :launch, "Launch" %>
-
-            <%= f.check_box :revenue %>
-            <%= f.label :revenue, "In Revenue" %>
-
-            <%= f.check_box :profitable %>
-            <%= f.label :profitable, "Profitable" %>
-
-            <%= f.check_box :scaling %>
-            <%= f.label :scaling, "Scaling" %>
-
-            <%= f.check_box :sale %>
-            <%= f.label :sale, "Sale" %>
 
           </div>
-        </div>
-
-      <h3>Your needs</h3>
-
-          <p>
-          <%= f.label :requests, "A detailed description of the expertise required" %><br>
-          <%= f.text_area :requests, size: "60x2" %>
-
-        </p>
-
-
-        <br>
-
-
-      <div class="checkbox">
-        <label>
-          <%= f.check_box :updates %>
-          Recieve weekly update on new start-ups and advisors
-        </label>
+          <br>
+          <br>
+        </section>
       </div>
-
-
-      <div class="checkbox">
-        <label>
-          <%= f.check_box :public %>
-          Make my profile visible to advisors
-        </label>
-      </div>
-
-
-
-
-      <% if current_user.admin? %>
-
-      <div class="checkbox">
-        <label>
-          <%= f.check_box :quality %>
-          Passed the quality filter
-        </label>
-      </div>
-
-
-      <div class="checkbox">
-        <label>
-          <%= f.check_box :featured %>
-          Featured startup
-        </label>
-      </div>
-
-      <% end %>
-
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-
-      <p>
-
-        <%= f.submit "Create Profile", :class => "btn btn-success" %>
-      </p>
-      
-
     </div>
   </div>
-
-  <% end %>

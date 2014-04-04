@@ -200,7 +200,7 @@ hr {
 }
 
 
-.panel {
+.featuredpanel {
     width: 300px;
     display: inline-block;
     margin: 40px 20px 0px 20px;
@@ -210,7 +210,7 @@ hr {
     border: 0px;
     border-radius: 0px;
     position: relative;
-    border-top: 1px solid;
+    border-top: 1px;
     border-left: 1px;
     border-right: 1px; 
     border-bottom: 1px;
@@ -223,20 +223,60 @@ hr {
 
 }
 
-.panel-inner {
+.featuredpanel-inner {
 
     padding: 0px 20px 0px 20px;
     font-size: 12px;
     text-align: left;
 }
 
-.panel-bottom {
+.featuredpanel-bottom {
     border-color: black;
     border-top: 1px solid #ddd;
     padding-top: 15px;
 }
 
-.panel-inner > p {line-height:170%}
+.featuredpanel-inner > p {line-height:170%}
+
+
+.advisorpanel {
+    width: 150px;
+    display: inline-block;
+    margin: 40px 20px 0px 20px;
+    vertical-align: top;
+    background-color: white;
+    padding: 0px;
+    border: 0px;
+    border-radius: 0px;
+    position: relative;
+    border-top: 1px;
+    border-left: 1px;
+    border-right: 1px; 
+    border-bottom: 1px;
+    -moz-box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: 0 1px 31px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.16);
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+
+}
+
+.advisorpanel-inner {
+
+    padding: 0px 20px 0px 20px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.advisorpanel-bottom {
+    border-color: black;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+   
+}
+
+.advisorpanel-inner > p {line-height:170%}
 
 
 /* ==========================================================================
@@ -351,6 +391,38 @@ hr {
 }
 
 #lc a {
+
+    text-align: center;
+    color: white;
+    text-decoration: underline;
+
+}
+
+/* last call */
+
+#apply {
+    background: #e74c3c;
+    padding-top: 150px;
+    padding-bottom: 50px;
+    text-align: left;
+    min-height: 500px;
+}
+
+#apply h2 {
+    font-weight: 400;
+    text-align: center;
+    color: white;
+
+}
+
+#apply p {
+
+    text-align: center;
+    color: white;
+
+}
+
+#apply a {
 
     text-align: center;
     color: white;
@@ -577,100 +649,7 @@ hr {
 }
 
 
-/* ==========================================================================
-   Pricing Tables
-   ========================================================================== */
-   
-   .pricing-option {
-    padding-bottom: 40px;
-}
-
-.pricing-option .pricing-top {
-    position: relative;
-    background: #222;
-    color: white;
-    text-align: center;
-    font-weight: bold;
-
-    padding: 40px 20px 30px 20px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.pricing-option .pricing-top .special-label {
-    display: block;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #1abc9c;
-    text-transform: uppercase;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 3px 0;
-}
-
-.special .pricing-top {
-    background: black;
-}
-
-.pricing-option .pricing-edition {
-    text-transform: uppercase;
-    display: block;
-    font-size: 25px;
-    letter-spacing: 8px;
-}
-
-.pricing-option .price {
-    display: inline-block;
-    position: relative;
-}
-
-.pricing-option .price sup {
-    position: absolute;
-    top: 50px;
-    left: -10px;
-    font-size: 24px;
-}
-
-.pricing-option .price .price-amount {
-    font-size: 108px;
-    letter-spacing: -4px;
-}
-
-.pricing-option .price small {
-    position: relative;
-    left: -10px;
-    font-size: 18px;
-}
-
-.pricing-option ul {
-    list-style: none;
-    margin: 0;
-    background: #eee;
-    text-align: center;
-    padding-left: 0px;
-}
-
-.pricing-option ul li {
-    border-bottom: solid 1px #e1e1e1;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-.pricing-option .pricing-signup {
-    display: block;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 15px 10px;
-    color: white;
-    background: #1abc9c;
-}
-
-.pricing-option .pricing-signup:hover {
-    background: #ff7878;
-}
 
 
+
+.add-task-row > .btn {margin: 10px}

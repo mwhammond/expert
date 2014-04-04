@@ -39,10 +39,11 @@ class AdvisorsController < ApplicationController
 	end
 
 	def destroy
+		session[:return_to] ||= request.referer
 		@advisor = Advisor.find(params[:id])
 		@advisor.destroy
+  		redirect_to session.delete(:return_to), notice: 'Profile removed'
 
-		redirect_to advisors_path, notice: 'Record deleted'
 	end
 
 

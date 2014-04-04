@@ -5,7 +5,7 @@ class StartupsController < ApplicationController
 	end
 
 	def index
-		@startups = Startup.all #where(:featured => true)
+		@startups = Startup.where("public = true").order(quality: :desc)
 	end
 
 
@@ -44,10 +44,11 @@ end
 
 
 def destroy
+  session[:return_to] ||= request.referer
   @startup = Startup.find(params[:id])
   @startup.destroy
  
-  redirect_to startups_path, notice: 'Profile removed'
+  redirect_to session.delete(:return_to), notice: 'Profile removed'
 end
 
 
