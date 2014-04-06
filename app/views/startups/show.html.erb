@@ -1,39 +1,95 @@
-<%= link_to 'Edit', edit_startup_path(@startup) %>
+
+<div id="innerpage">
+  <div class="container">
+    <div class="col-lg-8">
+     <section class="panel advisordetailpanel">
+      <div class="panel advisordetailpanel-inner">
+        <div class="row">
+          <div class="col-lg-3">
+
+            <%= link_to image_tag(@startup.avatar.url(:medium), class: "img-responsive"), @startup %>
+          </div>
+          <div class="col-lg-9">
+
+            <div class="row">
+
+              <div class="col-lg-9">
+                <h2><%= @startup.name %></h2>
+
+                <h3><%=@startup.sector%></h3>
+                <h4><b>Looking for: </b><%=@startup.requests%></h4>
+              </div>
+              <div class="col-lg-3">
+
+              </div>
+
+            </div>
+            <h4><%=@startup.bio%></h4>              
+            <div>
+              <p><b>Stage:</b><%=@startup.stage%></p>
+
+            </div>
+
+          </div>
+
+          <div class="advisordetailpanel-inner">
+            <div class="row">
+              <div class="col-lg-12">
+
+                <%= link_to "Follow", new_startup_path, :class => "btn btn-primary btn-md centered pull-right", method: :update %>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      </section>
+
+    <section class="panel advisordetailpanel">
+        <div class="panel advisordetailpanel-inner">
+          <div class="row">
+
+            <h2>Team</h2>
+            <p>In order to get in touch with the team simply press connect on the most relavent team member and if they accept contact details will be exchanged.</p>
+            <br>
 
 
-<%= image_tag @startup.avatar.url(:thumb) %>
+            <div class="connectionspeople">
+              <%= link_to image_tag(@startup.avatar.url(:thumb), class: "img-responsive", :width => "75"), @startup %>
+              <%= link_to @startup.name, @startup %><br>
+               <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-xs centered", method: :update %>
+            </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @startup.name %>
-</p>
- 
-<p>
-  <strong>Summary:</strong>
-  <%= @startup.bio %>
-</p>
+          </div> 
+        </div> 
+      </section>
 
-<p>
-  <strong>Sector:</strong>
-  <%= @startup.sector %>
-</p>
 
-<p>
-  <strong>Founded:</strong>
-  <%= @startup.founded %>
-</p>
+      <section class="panel advisordetailpanel">
+        <div class="panel advisordetailpanel-inner">
+          <div class="row">
 
-<p>
-  <strong>Featured:</strong>
-  <%= @startup.featured %>
-</p>
+            <h2>Connections</h2>
+            <br>
 
-<p>
-  <strong>Requests:</strong>
-  <%= @startup.requests %>
-</p>
 
-<p>
-  <strong>Case study:</strong>
-  <%= @startup.casestudy %>
-</p>
+            <div class="connectionspeople">
+              <%= link_to image_tag(@startup.avatar.url(:thumb), class: "img-responsive", :width => "75"), @startup %>
+              <%= link_to @startup.name, @startup %><br>
+              <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-xs centered", method: :update %>
+            </div>
+
+          </div> 
+        </div> 
+      </section>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+

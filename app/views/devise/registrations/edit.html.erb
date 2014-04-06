@@ -3,13 +3,6 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 
@@ -19,11 +12,146 @@
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></div>
 
+  
+  <div><%= f.label :name %><br />
+  <%= f.text_field :name %></div>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+
+      <p>Upload a photo (optional but helps)</p>
+      <%= f.file_field :avatar %>
+
+
+
+
+
+    <p>
+        <%= f.label :shortsummary, "1 line that summarises your expertise" %><br>
+        <%= f.text_area :shortsummary, size: "60x1" %>
+
+      </p>
+
+          <p>
+        <%= f.label :longsummary, "Detail on your expertise and interests" %><br>
+        <%= f.text_area :longsummary, size: "60x3" %>
+      </p>
+
+
+              <p>
+          <%= f.label :sector, "What sectors do you have expertise in (comma seperated)" %><br>
+          <%= f.text_field :sector, size: "45x1" %>
+        </p>
+
+        <p>How often do you currently work with start-ups?</p>
+        <div class="control-group">
+          <div class="controls">
+
+            <%= f.radio_button(:startupexperience, "Never") %>
+            <%= f.label(:startupExperience_1, "Never") %>
+
+            <%= f.radio_button(:startupexperience, "Occasionally") %>
+            <%= f.label(:startupExperience_2, "Occasionally") %>
+
+            <%= f.radio_button(:startupexperience, "Regularly") %>
+            <%= f.label(:startupExperience_2, "Regularly") %>
+
+          </div>
+        </div>
+
+        <br>
+        <p>How much availability do you have?</p>
+
+        <div class="control-group">
+          <div class="controls">
+
+            <%= f.radio_button(:bandwidth, "Rare") %>
+            <%= f.label(:bandwidth_1, "About 1 day month") %>
+
+            <%= f.radio_button(:bandwidth, "Occasionally") %>
+            <%= f.label(:bandwidth_2, "About 1 to 2 days per week") %>
+
+            <%= f.radio_button(:bandwidth, "Regularly") %>
+            <%= f.label(:bandwidth_2, "More than 2 days per week") %>
+
+          </div>
+        </div>
+
+        <br>
+        <p>Which stages interest you most? (leave blank if unsure)</p>
+
+        <div class="control-group">
+          <div class="controls">
+
+            <%= f.check_box :idea %>
+            <%= f.label :idea, "Idea stage" %>
+
+            <%= f.check_box :market %>
+            <%= f.label :market, "Market discovery" %>
+
+            <%= f.check_box :product %>
+            <%= f.label :product, "Product refinement" %>
+
+            <%= f.check_box :launch %>
+            <%= f.label :launch, "Launch" %>
+
+            <%= f.check_box :revenue %>
+            <%= f.label :revenue, "In Revenue" %>
+
+            <%= f.check_box :profitable %>
+            <%= f.label :profitable, "Profitable" %>
+
+            <%= f.check_box :scaling %>
+            <%= f.label :scaling, "Scaling" %>
+
+            <%= f.check_box :sale %>
+            <%= f.label :sale, "Sale" %>
+
+          </div>
+        </div>
+
+
+
+
+
+      <h3>Detail</h3>
+
+      <p>
+        <%= f.label :linkedin, "Link to Linkedin profile (optional)" %><br>
+        <%= f.text_field :linkedin, size: "30x1" %>
+      </p>
+
+
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :updates %>
+          Recieve weekly update on new start-ups and advisors
+        </label>
+      </div>
+
+
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :public %>
+          Make my profile visible to start-ups
+        </label>
+      </div>
+
+
+
+
+<p>---------------------------</p>
+
+
+
   <div><%= f.submit "Update" %></div>
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
 
 <%= link_to "Back", :back %>

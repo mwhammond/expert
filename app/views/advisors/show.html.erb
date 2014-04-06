@@ -1,34 +1,76 @@
-<%= link_to 'Edit', edit_advisor_path(@advisor) %>
+
+<div id="innerpage">
+  <div class="container">
+    <div class="col-lg-8">
+     <section class="panel advisordetailpanel">
+      <div class="panel advisordetailpanel-inner">
+        <div class="row">
+          <div class="col-lg-3">
+
+            <%= link_to image_tag(@advisor.avatar.url(:thumb), class: "img-responsive"), @advisor %>
+          </div>
+          <div class="col-lg-9">
+
+            <div class="row">
+
+              <div class="col-lg-9">
+                <h2>Mark Hammond</h2>
+                <h2><%= @advisor.name %></h2>
+
+                <h3><%=@advisor.sector%></h3>
+                <br>
+              </div>
+              <div class="col-lg-3">
+
+              </div>
+
+            </div>
+            <h4>After 5 years in the automotive industry I am no amazing at advising teams on serious stuff</h4>              
+            <div>
+              <p><b>Stage interest:</b> Idea <i class="fa fa-check "></i> Product development <i class="fa fa-check "></i></p>
+
+            </div>
+
+          </div>
+
+          <div class="advisordetailpanel-inner">
+            <div class="row">
+              <div class="col-lg-12">
+                <br> 
+                <p><%= @advisor.summary %></p>
+                <br>
+                <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-md centered pull-right", method: :update %>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      </section>
+
+      <section class="panel advisordetailpanel">
+        <div class="panel advisordetailpanel-inner">
+          <div class="row">
+
+            <h2>Connections</h2>
+            <br>
 
 
-<%= image_tag @advisor.avatar.url(:thumb) %>
+            <div class="connectionspeople">
+              <%= link_to image_tag(@advisor.avatar.url(:thumb), class: "img-responsive", :width => "75"), @advisor %>
+              <%= link_to @advisor.name, @advisor %>
+            </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @advisor.name %>
-</p>
- 
-<p>
-  <strong>Summary:</strong>
-  <%= @advisor.summary %>
-</p>
+          </div> 
+        </div> 
+      </section>
 
-<p>
-  <strong>Sector:</strong>
-  <%= @advisor.sector %>
-</p>
 
-<p>
-  <strong>Availability:</strong>
-  <%= @advisor.bandwidth %>
-</p>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Featured:</strong>
-  <%= @advisor.featured %>
-</p>
 
-<p>
-  <strong>Bandwidth:</strong>
-  <%= @advisor.bandwidth %>
-</p>
+

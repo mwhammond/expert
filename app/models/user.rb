@@ -10,19 +10,12 @@ class User < ActiveRecord::Base
   has_one :advisor, dependent: :destroy
   has_one :startup, dependent: :destroy
 
-
+  has_attached_file :avatar, :styles => { :medium => "150x200>", :thumb => "150x200>" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   	       
 
   def admin?
   	admin
   end 
-
-  def advisor?
-  	usertype == "advisor"
-  end
-
-   def startup?
-  	usertype == "startup"
-  end        
          
 end

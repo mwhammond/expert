@@ -6,28 +6,27 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_devise_params, if: :devise_controller?
 
+private
+
   def configure_devise_params
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:name, :usertype, :email, :password, :password_confirmation)
     end
   end
 
+    def configure_devise_params
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit(:name, :usertype, :email, :password, :password_confirmation, :current_password, :admin, :name, :referer, :linkedin, :shortsummary, :longsummary, :sector, :startupexperience, :bandwidth, :stage, :public, :referredby, :quality, :featured, :advisor, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :updates, :idea, :market, :product, :launch, :revenue, :profitable, :scaling, :sale)
+    end
+  end
+
+
   def after_sign_in_path_for(resource)
     # note this is set by the adapated devise user signup form based, two different
     # landing pages depending on which button clicked on the front
-
-    if current_user.advisor?
-      new_advisor_path
-
-    elsif current_user.startup?
-      new_startup_path
-
-    else
-
-    current_user
-
-    end
-  	
+    home_index
   end
+
+
 
 end
