@@ -16,7 +16,7 @@ private
 
     def configure_devise_params
     devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(:name, :usertype, :email, :password, :password_confirmation, :current_password, :admin, :name, :referer, :linkedin, :shortsummary, :longsummary, :sector, :startupexperience, :bandwidth, :stage, :public, :referredby, :quality, :featured, :advisor, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :updates, :idea, :market, :product, :launch, :revenue, :profitable, :scaling, :sale)
+      u.permit(:advisor, :name, :usertype, :email, :password, :password_confirmation, :current_password, :admin, :name, :referer, :linkedin, :shortsummary, :longsummary, :sector, :startupexperience, :bandwidth, :stage, :public, :referredby, :quality, :featured, :advisor, :avatar_file_name, :avatar_content_type, :avatar_file_size, :avatar_updated_at, :avatar, :updates, :idea, :market, :product, :launch, :revenue, :profitable, :scaling, :sale)
     end
   end
 

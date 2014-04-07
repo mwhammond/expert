@@ -1,63 +1,26 @@
+<div id="innerpage">
+  <div class="container">
+    <div class="row mt">
+      <div class="col-lg-8">
 
+        <h1>Advisors, NEDs, Chairs and sector experts looking to accelerate high potential start-ups.</h1>
+        <p>Click connect on any profile below to show that advisor your profile. If they also think that you could be a good fit contact details will be exchanged. Not signed up yet? <%= link_to "Sign up here", new_user_path %>. </p>
 
+      </div>
 
+    </div>
 
-  <div id="white">
-    <div class="container">
-      <div class="row mt">
-        <div class="col-lg-8">
-          <br>
-          <h1>All Users</h1>
-            <br>
+    <div class="row mt">
 
-            <% if can? :update, @user %>
+      <%= render "/home/featuredadvisors", :users => @users %>
 
-            <h3><%= link_to '+ Add new user', new_user_path %></h3>
-
-            <% end %>
-
-          </div>
-
-        </div>
-
-        <div class="row mt">
-
-          <br>
-
-          <% @users.each do |user| %>
-        
-          <div class="col-lg-3">
-            
-            <%= image_tag user.avatar.url(:thumb), class: "img-responsive" %>
-            <h3><%= user.name %></h3>
-            <p><b><%= user.sector %></b><p>
-              <p><%= user.summary %></p>
-              <h5><a href="#">+ connect</a></h5>
-                
-                <% if can? :update, @user %>
-
-      <p><%= link_to 'Edit', edit_user_path(user) %> | 
-      <%= link_to 'Delete', user_path(user),
-                    method: :delete, data: { confirm: 'Are you sure?' } %> </p>
-
-                <% end %>
-              
-          </div>
-
-          <%end%>
-
-
-                <div class="row mt">
-                    <div class="col-lg-12">
-                      <br>
-                      <%= button_to "Apply to be an user", new_user_path, :class => "btn btn-success btn-lg pull-right", :method => :get %>
-
-
-                    </div>
-
-                </div>      
-
+      <br>
+      <br>
 <br>
 <br>
-              </div>
-            </div>    
+    </div>
+  </div>  
+</div>  
+
+
+<%= render :partial => "layouts/getnotified" %>

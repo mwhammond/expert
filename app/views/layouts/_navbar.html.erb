@@ -16,7 +16,7 @@
 
       <ul class="nav navbar-nav navbar-right">        
         <li><%= link_to "Startups", startups_path %></li>
-        <li><%= link_to "Advisors", advisors_path %></li>
+        <li><%= link_to "Advisors", users_path %></li>
         <li><%= link_to "How it works", home_about_path %></li>
         <% if user_signed_in? %>
           <li><%= link_to "My Profile", current_user %></li>

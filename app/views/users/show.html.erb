@@ -1,23 +1,148 @@
-   <div id="innerpage">
-    <div class="container">
+ 
+<div id="innerpage">
+  <div class="container">
+    <div class="col-lg-8">
+     <section class="panel advisordetailpanel">
+      <div class="panel advisordetailpanel-inner">
+        <div class="row">
+          <div class="col-lg-3">
+
+            <%= link_to image_tag(@user.avatar.url(:medium), class: "img-responsive"), @user %>
+          </div>
+          <div class="col-lg-9">
+
+            <div class="row">
+
+              <div class="col-lg-9">
+                <h2><%= @user.name %></h2>
+                 <h2><%= @user.linkedin %></h2>
+
+               
+                <h4><%=@user.shortsummary%></h4>
+              </div>
+              <div class="col-lg-3">
+
+              </div>
+
+            </div>
+                    
+            <div>
+            
+
+            </div>
+
+          </div>
+
+          <div class="advisordetailpanel-inner">
+            <div class="row">
+              <div class="col-lg-12">
+
+              <%if @user.id == current_user.id%>
+                <h3><%= link_to "edit profile", edit_user_registration_path(current_user), :class=>"pull-right" %></h3>
+                <%else%>
+                 <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-md pull-right", method: :update %>
+              <%end%>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      </section>
+
+      <%if @user.advisor%>
+
+          <section class="panel advisordetailpanel">
+        <div class="panel advisordetailpanel-inner">
+          <div class="row">
+
+            <h2>Advisor credentials</h2>
+             <h3><%=@user.sector%></h3>
+             <h4><%=@user.longsummary%></h4>   
+             <p>Stage preference: <%=@user.idea%></p>  
+            <br>
 
 
 
+          </div> 
+        </div> 
+      </section>
+
+      <%else%>
+
+        <%if current_user.id = @user.id%>
+
+          <section class="panel advisordetailpanel">
+        <div class="panel advisordetailpanel-inner">
+          <div class="row">
+          <h3><%= link_to "Activate your advisor profile", edit_user_registration_path(current_user), :class=>"pull-right" %></h3>
+                    </div> 
+        </div> 
+      </section>
+
+        <%end%>
+
+      <%end%>
 
 
-      <div class="col-lg-8">
 
-         <h1>Your profiles</h1>
-         <br>
-         <h2><%=current_user.name%></h2>
+    <section class="panel advisordetailpanel">
+        <div class="panel advisordetailpanel-inner">
+          <div class="row">
 
-         <%= link_to "edit", edit_user_registration_path(current_user) %>
+            <h2>Connections</h2>
+
+            <br>
+
+            <div class="connectionspeople">
+              <%= link_to image_tag(@user.avatar.url(:thumb), class: "img-responsive", :width => "75"), @user %>
+              <%= link_to @user.name, @user %><br>
+               <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-xs centered", method: :update %>
+            </div>
+
+          </div> 
+        </div> 
+      </section>
 
 
-</div>  
+      <section class="panel advisordetailpanel">
+        <div class="panel advisordetailpanel-inner">
+          <div class="row">
+
+            <h2>Connections</h2>
+            <br>
+
+
+            <div class="connectionspeople">
+              <%= link_to image_tag(@user.avatar.url(:thumb), class: "img-responsive", :width => "75"), @user %>
+              <%= link_to @user.name, @user %><br>
+              <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-xs centered", method: :update %>
+            </div>
+
+          </div> 
+        </div> 
+      </section>
+
+
+    </div>
+  </div>
 </div>
 
 
 
 
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+         

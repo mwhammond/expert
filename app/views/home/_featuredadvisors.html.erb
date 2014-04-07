@@ -1,8 +1,8 @@
 
 <div class="row centered">
 
-  <% if advisors %>
-  <% advisors.each do |advisor| %>
+  <% if users %>
+  <% users.each do |advisor| %>
 
   <div class="advisorpanel">
 
@@ -14,7 +14,7 @@
 
         <p><b><%= advisor.name %></b><p>
           <p><b>Expertise:</b> <%=advisor.sector%></p>
-          <p><%= advisor.summary %></p>
+          <p><%= advisor.shortsummary %></p>
           
           <div class="advisorpanel-bottom centered">
             <div class="row">
