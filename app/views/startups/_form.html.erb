@@ -48,11 +48,11 @@
                   </p>
 
 
-                  <p>
-                    <%= f.label :sector, "Most relavent sector" %><br>
-                    <%= f.select(:sector, [['Advertising, sales, marketing',1],['Agriculture',2],['Automotive & Transportation',3],['Business Intelligence',4],['Chemicals & Materials',5],['Cleantech - Biofuels and Biomaterials',6],['Cleantech - Energy Efficiency',7],['Cleantech - Renewables',8],['Education & Training',9],['Entertainment & Media',10],['Fashion',11],['Financial Services & Payments',12],['Health and Wellness',13],['Household & Personal Products',14],['ICT Hardware & Equipment',15],['Industrial Equipment & Services',16],['Information & Data Analytics',17],['Medical Technologies & Services',18],['Networking',19],['Oil & Gas',20],['Security (digital)',21],['Security (real world)',22],['Social Media & Gaming',24],['Software & IT Services',25],['Supply Chain and logistics',26],['Telecoms',27],['Therapeutics',28]]) %>
+                <p>
+                  <%= f.label :sector, "Most relavent sector" %><br>
+                  <%= f.select(:sector, [['Advertising, sales, marketing','Advertising, sales, marketing'],['Agriculture','Agriculture'],['Automotive & Transportation','Automotive & Transportation'],['Business Intelligence','Business Intelligence'],['Chemicals & Materials','Chemicals & Materials'],['Cleantech - Biofuels and Biomaterials','Cleantech - Biofuels and Biomaterials'],['Cleantech - Energy Efficiency','Cleantech - Energy Efficiency'],['Cleantech - Renewables','Cleantech - Renewables'],['Education & Training','Education & Training'],['Entertainment & Media','Entertainment & Media'],['Fashion','Fashion'],['Financial Services & Payments','Financial Services & Payments'],['Health and Wellness','Health and Wellness'],['Household & Personal Products','Household & Personal Products'],['ICT Hardware & Equipment','ICT Hardware & Equipment'],['Industrial Equipment & Services','Industrial Equipment & Services'],['Information & Data Analytics','Information & Data Analytics'],['Medical Technologies & Services','Medical Technologies & Services'],['Networking','Networking'],['Oil & Gas','Oil & Gas'],['Security (digital)','Security (digital)'],['Security (real world)','Security (real world)'],['Social Media & Gaming','Social Media & Gaming'],['Software & IT Services','Software & IT Services'],['Supply Chain and logistics','Supply Chain and logistics'],['Telecoms','Telecoms'],['Therapeutics','Therapeutics']]) %>
 
-                  </p>
+                </p>
 
 
 
@@ -156,9 +156,11 @@
                   </label>
                 </div>
 
+<%else%>
+<%= f.hidden_field :user_id, :value => current_user.id %>
                 <% end %>
 
-                <%= f.hidden_field :user_id, :value => current_user.id %>
+                
 
                 <p>
                   <br>

@@ -2,50 +2,67 @@
 <%= devise_error_messages! %>
 <div id="innerpage">
   <div class="container">
-    <div class="col-lg-8">
+    <div class="col-lg-7">
      <section class="panel advisordetailpanel">
       <div class="panel advisordetailpanel-inner">
+        <h2>Update profile</h2>
         <div class="row">
-          <h2>Update profile</h2>
+          <br>
+          
           <div class="col-lg-3">
-            
-              <%= link_to image_tag(@user.avatar.url(:medium), class: "img-responsive"), @user %>
 
-                <p>Upload a photo</p>
-                <%= f.file_field :avatar %>
+            <%= link_to image_tag(@user.avatar.url(:medium), class: "img-responsive"), @user %>
+
+            <p>Upload a photo</p>
+            <%= f.file_field :avatar %>
 
 
 
-              </div>
+          </div>
+          <div class="col-lg-9">
+
+            <div class="row">
+
               <div class="col-lg-9">
 
-                <div class="row">
+                <div><%= f.label :name %><br />
+                  <%= f.text_field :name %></div>
 
-                  <div class="col-lg-9">
+                  <div><%= f.label :email %><br />
+                    <%= f.email_field :email, :autofocus => true, size: "50x1" %></div>
 
-                                <div><%= f.label :name %><br />
-              <%= f.text_field :name %></div>
+      
 
-              <div><%= f.label :email %><br />
-                <%= f.email_field :email, :autofocus => true %></div>
+                                    <p>
+                  <%= f.label :shortsummary, "Describe yourself in 1 line" %><br>
+                  <%= f.text_area :shortsummary, size: "50x2" %>
 
                                 <p>
-                  <%= f.label :linkedin, "Linkedin profile (optional)" %><br>
-                  <%= f.text_field :linkedin, size: "30x1" %>
+                      <%= f.label :linkedin, "Linkedin profile (optional)" %><br>
+                      <%= f.text_field :linkedin, size: "50x1" %>
+                    </p>
+                  <br>
+                  <br>
+
                 </p>
 
 
 
-                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-                <% end %>
+                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                    <% end %>
 
                   </div>
+
+
+
                   <div class="col-lg-3">
 
                   </div>
 
+
                 </div>
+                <%= f.submit "Save changes", :class => "btn btn-success pull-right" %>
 
                 <div>
 
@@ -65,6 +82,7 @@
 
               </div>
 
+
             </div>
 
           </section>
@@ -74,169 +92,198 @@
           <section class="panel advisordetailpanel">
             <div class="panel advisordetailpanel-inner">
               <h2>Advisor profile</h2>
-              <div class="row">
 
-               <div class="checkbox">
+
+              <div class="checkbox">
                 <label>
-                  <%= f.check_box :advisor %>
-                  Activate your advisor profile
-                </label>
-              </div>
+                  <h3><%= f.check_box :advisor %>
+                    Activate your advisor profile</h3>
+                  </label>
+                </div>
+                <br>
 
-               <p>
-                <%= f.label :shortsummary, "1 line that summarises your expertise" %><br>
-                <%= f.text_area :shortsummary, size: "60x1" %>
 
-              </p>
 
-              <p>
-                <%= f.label :longsummary, "Detail on your expertise and interests" %><br>
-                <%= f.text_area :longsummary, size: "60x3" %>
-              </p>
+                <p>
+                  <%= f.label :longsummary, "Detail on your expertise and interests" %><br>
+                  <%= f.text_area :longsummary, size: "60x3" %>
+                </p>
 
 
                 <P>Sector most relavent to your expertise</P>
+                <p>
+                  <%= f.label :sector, "Most relavent sector" %><br>
+                  <%= f.select(:sector, [['Advertising, sales, marketing','Advertising, sales, marketing'],['Agriculture','Agriculture'],['Automotive & Transportation','Automotive & Transportation'],['Business Intelligence','Business Intelligence'],['Chemicals & Materials','Chemicals & Materials'],['Cleantech - Biofuels and Biomaterials','Cleantech - Biofuels and Biomaterials'],['Cleantech - Energy Efficiency','Cleantech - Energy Efficiency'],['Cleantech - Renewables','Cleantech - Renewables'],['Education & Training','Education & Training'],['Entertainment & Media','Entertainment & Media'],['Fashion','Fashion'],['Financial Services & Payments','Financial Services & Payments'],['Health and Wellness','Health and Wellness'],['Household & Personal Products','Household & Personal Products'],['ICT Hardware & Equipment','ICT Hardware & Equipment'],['Industrial Equipment & Services','Industrial Equipment & Services'],['Information & Data Analytics','Information & Data Analytics'],['Medical Technologies & Services','Medical Technologies & Services'],['Networking','Networking'],['Oil & Gas','Oil & Gas'],['Security (digital)','Security (digital)'],['Security (real world)','Security (real world)'],['Social Media & Gaming','Social Media & Gaming'],['Software & IT Services','Software & IT Services'],['Supply Chain and logistics','Supply Chain and logistics'],['Telecoms','Telecoms'],['Therapeutics','Therapeutics']]) %>
+
+                </p>
+
+                <p>How often do you currently work with start-ups?</p>
+                <div class="control-group">
+                  <div class="controls">
+
+                    <%= f.radio_button(:startupexperience, "Never") %>
+                    <%= f.label(:startupExperience_1, "Never") %>
+
+                    <%= f.radio_button(:startupexperience, "Occasionally") %>
+                    <%= f.label(:startupExperience_2, "Occasionally") %>
+
+                    <%= f.radio_button(:startupexperience, "Regularly") %>
+                    <%= f.label(:startupExperience_2, "Regularly") %>
+
+                  </div>
+                </div>
+
+                <br>
+                <p>How much availability do you have?</p>
+
+                <div class="control-group">
+                  <div class="controls">
+
+                    <%= f.radio_button(:bandwidth, "Rare") %>
+                    <%= f.label(:bandwidth_1, "About 1 day month") %>
+
+                    <%= f.radio_button(:bandwidth, "Occasionally") %>
+                    <%= f.label(:bandwidth_2, "About 1 to 2 days per week") %>
+
+                    <%= f.radio_button(:bandwidth, "Regularly") %>
+                    <%= f.label(:bandwidth_2, "More than 2 days per week") %>
+
+                  </div>
+                </div>
+
+                <br>
+                <p>Which stages interest you most? (leave blank if unsure)</p>
+
+                <div class="control-group">
+                  <div class="controls">
+
+                    <%= f.check_box :idea %>
+                    <%= f.label :idea, "Idea stage" %>
+
+                    <%= f.check_box :market %>
+                    <%= f.label :market, "Market discovery" %>
+
+                    <%= f.check_box :product %>
+                    <%= f.label :product, "Product refinement" %>
+
+                    <%= f.check_box :launch %>
+                    <%= f.label :launch, "Launch" %>
+
+                    <%= f.check_box :revenue %>
+                    <%= f.label :revenue, "In Revenue" %>
+
+                    <%= f.check_box :profitable %>
+                    <%= f.label :profitable, "Profitable" %>
+
+                    <%= f.check_box :scaling %>
+                    <%= f.label :scaling, "Scaling" %>
+
+                    <%= f.check_box :sale %>
+                    <%= f.label :sale, "Sale" %>
+
+                  </div>
+                </div>
+
+
+                <div class="checkbox">
+                  <label>
+                    <%= f.check_box :updates %>
+                    Recieve weekly update on new start-ups and advisors
+                  </label>
+                </div>
+
+
+                <div class="checkbox">
+                  <label>
+                    <%= f.check_box :public %>
+                    Make my profile visible to start-ups
+                  </label>
+                </div>
+
+
+
+
+                <br>
+                <%= f.submit "Save changes", :class => "btn btn-success pull-right" %>
+              </div> 
+
+
+              <br>
+            </section>
+
+
+
+
+            <section class="panel advisordetailpanel">
+              <div class="panel advisordetailpanel-inner">
+                <div class="row">
+
+                  <h2>Update password</h2>
+
+                  <br>
+
+
+
+
+
+                  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+                    <%= f.password_field :password, :autocomplete => "off" %></div>
+
+                    <div><%= f.label :password_confirmation %><br />
+                      <%= f.password_field :password_confirmation %></div>
+
+                      <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+                        <%= f.password_field :current_password %></div>
+
+
+                <% if current_user.admin? %>
+
+                <h3>Admin options</h3>
+
+                <div class="checkbox">
                   <p>
-                    <%= f.label :sector, "Most relavent sector" %><br>
-                    <%= f.select(:sector, [['Advertising, sales, marketing',1],['Agriculture',2],['Automotive & Transportation',3],['Business Intelligence',4],['Chemicals & Materials',5],['Cleantech - Biofuels and Biomaterials',6],['Cleantech - Energy Efficiency',7],['Cleantech - Renewables',8],['Education & Training',9],['Entertainment & Media',10],['Fashion',11],['Financial Services & Payments',12],['Health and Wellness',13],['Household & Personal Products',14],['ICT Hardware & Equipment',15],['Industrial Equipment & Services',16],['Information & Data Analytics',17],['Medical Technologies & Services',18],['Networking',19],['Oil & Gas',20],['Security (digital)',21],['Security (real world)',22],['Social Media & Gaming',24],['Software & IT Services',25],['Supply Chain and logistics',26],['Telecoms',27],['Therapeutics',28]]) %>
-
+                    <%= f.label :quality, "Rating (1-5)" %><br>
+                    <%= f.text_field :quality, size: "3x1" %>
                   </p>
+                </div>
 
-              <p>How often do you currently work with start-ups?</p>
-              <div class="control-group">
-                <div class="controls">
 
-                  <%= f.radio_button(:startupexperience, "Never") %>
-                  <%= f.label(:startupExperience_1, "Never") %>
+                <div class="checkbox">
+                  <label>
+                    <%= f.check_box :featured %>
+                    Featured user
+                  </label>
+                </div>
 
-                  <%= f.radio_button(:startupexperience, "Occasionally") %>
-                  <%= f.label(:startupExperience_2, "Occasionally") %>
+                 <div class="checkbox">
+                  <label>
+                    <%= f.check_box :public %>
+                    Make public
+                  </label>
+                </div>
 
-                  <%= f.radio_button(:startupexperience, "Regularly") %>
-                  <%= f.label(:startupExperience_2, "Regularly") %>
+<%else%>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+                <% end %>
+
+                        <%= f.submit "Save changes", :class => "btn btn-success pull-right" %>
+                        <% end %>
+
+
+                      </div> 
+                    </div> 
+                  </section>
+
+
+
+
 
                 </div>
+
+               
+
               </div>
-
-              <br>
-              <p>How much availability do you have?</p>
-
-              <div class="control-group">
-                <div class="controls">
-
-                  <%= f.radio_button(:bandwidth, "Rare") %>
-                  <%= f.label(:bandwidth_1, "About 1 day month") %>
-
-                  <%= f.radio_button(:bandwidth, "Occasionally") %>
-                  <%= f.label(:bandwidth_2, "About 1 to 2 days per week") %>
-
-                  <%= f.radio_button(:bandwidth, "Regularly") %>
-                  <%= f.label(:bandwidth_2, "More than 2 days per week") %>
-
-                </div>
-              </div>
-
-              <br>
-              <p>Which stages interest you most? (leave blank if unsure)</p>
-
-              <div class="control-group">
-                <div class="controls">
-
-                  <%= f.check_box :idea %>
-                  <%= f.label :idea, "Idea stage" %>
-
-                  <%= f.check_box :market %>
-                  <%= f.label :market, "Market discovery" %>
-
-                  <%= f.check_box :product %>
-                  <%= f.label :product, "Product refinement" %>
-
-                  <%= f.check_box :launch %>
-                  <%= f.label :launch, "Launch" %>
-
-                  <%= f.check_box :revenue %>
-                  <%= f.label :revenue, "In Revenue" %>
-
-                  <%= f.check_box :profitable %>
-                  <%= f.label :profitable, "Profitable" %>
-
-                  <%= f.check_box :scaling %>
-                  <%= f.label :scaling, "Scaling" %>
-
-                  <%= f.check_box :sale %>
-                  <%= f.label :sale, "Sale" %>
-
-                </div>
-              </div>
-
-
-              <div class="checkbox">
-                <label>
-                  <%= f.check_box :updates %>
-                  Recieve weekly update on new start-ups and advisors
-                </label>
-              </div>
-
-
-              <div class="checkbox">
-                <label>
-                  <%= f.check_box :public %>
-                  Make my profile visible to start-ups
-                </label>
-              </div>
-
-
-
-
-
-
-            </div> 
-          </div> 
-        </section>
-
-
-
-
-        <section class="panel advisordetailpanel">
-          <div class="panel advisordetailpanel-inner">
-            <div class="row">
-
-              <h2>Password</h2>
-
-              <br>
-
-              <div class="connectionspeople">
-
-
-
-                <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-                  <%= f.password_field :password, :autocomplete => "off" %></div>
-
-                  <div><%= f.label :password_confirmation %><br />
-                    <%= f.password_field :password_confirmation %></div>
-
-                    <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-                      <%= f.password_field :current_password %></div>
-
-                      <div><%= f.submit "Update" %></div>
-                      <% end %>
-
-
-                      <%= link_to "Back", :back %>
-
-                    </div>
-
-                  </div> 
-                </div> 
-              </section>
-
-
-
-
-
             </div>
-          </div>
-        </div>
 
 
 

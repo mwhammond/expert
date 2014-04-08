@@ -26,7 +26,16 @@
             </div>
             <h4><%=@startup.bio%></h4>              
             <div>
-              <p><b>Stage:</b><%=@startup.stage%></p>
+              <p><b>Current stage: </b>
+              <% if @startup.idea%>idea<%end%>
+              <% if @startup.market%>, market research<%end%>
+              <% if @startup.product%>, product development<%end%>
+              <% if @startup.launch%>, launch<%end%>
+              <% if @startup.revenue%>, revenue<%end%>
+              <% if @startup.profitable%>, profitable<%end%>
+              <% if @startup.scaling%>, scaling<%end%>
+              <% if @startup.sale%>, sale<%end%>
+             </p>  
 
             </div>
 
@@ -35,8 +44,11 @@
           <div class="advisordetailpanel-inner">
             <div class="row">
               <div class="col-lg-12">
-
-                <%= link_to "Follow", new_startup_path, :class => "btn btn-primary btn-md centered pull-right", method: :update %>
+                <%if @startup.user_id == current_user.id%>
+                <h3><%= link_to "edit profile", edit_startup_path(@startup), :class=>"pull-right" %></h3>
+                <%else%>
+                <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-md pull-right", method: :update %>
+                <%end%>
               </div>
               
             </div>
@@ -51,15 +63,13 @@
         <div class="panel advisordetailpanel-inner">
           <div class="row">
 
-            <h2>Team</h2>
+            <h2>Contact</h2>
             <p>In order to get in touch with the team simply press connect on the most relavent team member and if they accept contact details will be exchanged.</p>
             <br>
 
 
             <div class="connectionspeople">
-              <%= link_to image_tag(@startup.avatar.url(:thumb), class: "img-responsive", :width => "75"), @startup %>
-              <%= link_to @startup.name, @startup %><br>
-               <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-xs centered", method: :update %>
+           <p>In development...</p>
             </div>
 
           </div> 

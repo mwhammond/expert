@@ -24,6 +24,7 @@ class StartupsController < ApplicationController
 
 def show
 	@startup = Startup.find(params[:id])
+	@user = User.where(:id => 1)
 	
 end
 

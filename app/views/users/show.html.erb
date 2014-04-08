@@ -1,7 +1,7 @@
  
 <div id="innerpage">
   <div class="container">
-    <div class="col-lg-8">
+    <div class="col-lg-6">
      <section class="panel advisordetailpanel">
       <div class="panel advisordetailpanel-inner">
         <div class="row">
@@ -15,10 +15,8 @@
 
               <div class="col-lg-9">
                 <h2><%= @user.name %></h2>
-                 <h2><%= @user.linkedin %></h2>
-
-               
                 <h4><%=@user.shortsummary%></h4>
+                <p><%= link_to "Linkedin", @user.linkedin %></p>
               </div>
               <div class="col-lg-3">
 
@@ -59,9 +57,21 @@
           <div class="row">
 
             <h2>Advisor credentials</h2>
-             <h3><%=@user.sector%></h3>
-             <h4><%=@user.longsummary%></h4>   
-             <p>Stage preference: <%=@user.idea%></p>  
+            <br>
+             <h4><b>Primary sector focus: </b><%=@user.sector%></h4>
+             <p><b>Stage preference: </b><% if @user.idea%>idea: <i class="fa fa-check"></i><%end%>
+              <% if @user.market%>market research: <i class="fa fa-check"></i><%end%>
+              <% if @user.product%>product development: <i class="fa fa-check"></i><%end%>
+              <% if @user.launch%>launch: <i class="fa fa-check"></i><%end%>
+              <% if @user.revenue%>revenue: <i class="fa fa-check"></i><%end%>
+              <% if @user.profitable%>profitable: <i class="fa fa-check"></i><%end%>
+              <% if @user.scaling%>scaling: <i class="fa fa-check"></i><%end%>
+              <% if @user.sale%>sale: <i class="fa fa-check"></i><%end%>
+             </p>  
+
+
+             <h5><%=@user.longsummary%></h5>   
+             
             <br>
 
 
@@ -72,7 +82,7 @@
 
       <%else%>
 
-        <%if current_user.id = @user.id%>
+        <%if current_user.id == @user.id%>
 
           <section class="panel advisordetailpanel">
         <div class="panel advisordetailpanel-inner">
@@ -107,28 +117,44 @@
       </section>
 
 
-      <section class="panel advisordetailpanel">
-        <div class="panel advisordetailpanel-inner">
-          <div class="row">
-
-            <h2>Connections</h2>
-            <br>
-
-
-            <div class="connectionspeople">
-              <%= link_to image_tag(@user.avatar.url(:thumb), class: "img-responsive", :width => "75"), @user %>
-              <%= link_to @user.name, @user %><br>
-              <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-xs centered", method: :update %>
-            </div>
-
-          </div> 
-        </div> 
-      </section>
-
 
     </div>
+
+     <div class="col-lg-5 col-lg-offset-1">
+                              <section class="panel advisordetailpanel">
+              <div class="panel advisordetailpanel-inner">
+                <div class="row">
+                  <h2>Startup profiles</h2>
+
+                    <% if @startups %>
+            <% @startups.each do |startup| %>
+
+              <div class="connectionspeople">
+              <%= link_to image_tag(startup.avatar.url(:thumb), class: "img-responsive", :width => "75"), startup %>
+              <%= link_to startup.name, startup %><br>
+            </div>
+
+          <%end%>
+          <%else%>
+          <p>No startups listed</p>
+
+        <%end%>
+
+        <%if @user.id == current_user.id%>
+        <%= link_to "Create a startup profile", controller: "startups", action: "new", :class => "btn btn-primary btn-xs centered" %>
+
+        <%end%>
+
+                </div>
+              </div>
+            </section>
+                </div>
+
   </div>
+  <br>
+<br>
 </div>
+
 
 
 
