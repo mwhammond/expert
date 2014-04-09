@@ -7,7 +7,9 @@ Expert::Application.routes.draw do
 
 resources :startups
 resources :advisors
-resources :users
+resources :users do 
+  put :friend, :on => :collection
+end
 
 
 get "home/advisorsignup"
