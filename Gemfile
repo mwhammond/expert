@@ -15,6 +15,9 @@ gem 'rails_12factor', group: :production
 # Use postgres for database
 gem 'pg'
 
+# handles contact friend relationships
+gem 'act_as_buddy'
+
 # allows ENV variables to be set in yml file
 gem 'figaro'
 
