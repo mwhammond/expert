@@ -24,7 +24,7 @@ private
   def after_sign_in_path_for(resource)
     # note this is set by the adapated devise user signup form based, two different
     # landing pages depending on which button clicked on the front
-    home_index
+    home_index_path
   end
 
 
