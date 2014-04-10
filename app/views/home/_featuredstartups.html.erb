@@ -16,13 +16,25 @@
           <h5><%= startup.bio %></h5>
           <p><b>Sector: </b><%= startup.sector %><p>
           <% if startup.casestudy %>
-          <p><b>Case study:
+          <p><b>Case study:</b> <%= startup.requests %>
             <%else%>
           <p><b>Searching for: </b><%= startup.requests %>
             <%end%>
           </p>
-          <p><b>Followers: </b><a href="#">Kelsey Lyn, Mark Hammond, Tony Williams</a></p>
+          <div>
+          <% @following = startup.all_following %>
+              
+          <p><b>Followers: </b>
+            <%if @following%>
+            <%@following.each do |followme|%>
 
+            
+              <%= link_to followme.name + ', ', followme %>
+            
+            <%end%>
+            <%end%>
+            </p>
+            </div>
 
           <div>
 

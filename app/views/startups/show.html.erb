@@ -17,7 +17,12 @@
                 <h2><%= @startup.name %></h2>
 
                 <h3><%=@startup.sector%></h3>
+                <%if @startup.casestudy%>
+                <h4><b>Case study: </b><%=@startup.requests%></h4>
+                <%else%>
                 <h4><b>Looking for: </b><%=@startup.requests%></h4>
+                <%end%>
+
               </div>
               <div class="col-lg-3">
 
@@ -27,14 +32,14 @@
             <h4><%=@startup.bio%></h4>              
             <div>
               <p><b>Current stage: </b>
-              <% if @startup.idea%>idea<%end%>
-              <% if @startup.market%>, market research<%end%>
-              <% if @startup.product%>, product development<%end%>
-              <% if @startup.launch%>, launch<%end%>
-              <% if @startup.revenue%>, revenue<%end%>
-              <% if @startup.profitable%>, profitable<%end%>
-              <% if @startup.scaling%>, scaling<%end%>
-              <% if @startup.sale%>, sale<%end%>
+              <% if @startup.idea == '1'%>idea - <%end%>
+              <% if @startup.market == '1'%>market research - <%end%>
+              <% if @startup.product == '1'%>product development - <%end%>
+              <% if @startup.launch == '1'%>launch - <%end%>
+              <% if @startup.revenue == '1'%>revenue - <%end%>
+              <% if @startup.profitable == '1'%>profitable - <%end%>
+              <% if @startup.scaling == '1'%>scaling - <%end%>
+              <% if @startup.sale == '1'%>sale <%end%>
              </p>  
 
             </div>
@@ -56,18 +61,34 @@ onClick="alert('This feature will be enabled soon, follow for now')">
 </div>
 
 
-
-                            <div id="follow">
+                <div id="follow">
+                  
                   <% if @startup.following?(current_user) %>
               
                   
                   <%= link_to "Unfollow", { :controller => "startups", :action => "unfollow", :id => @startup.id}, method: :put, remote: true, :class => "btn btn-danger btn-md pull-right" %> 
+                
 
                   <%else%>
 
+                  
                   <%= link_to "Follow", { :controller => "startups", :action => "follow", :id => @startup.id}, method: :put, remote: true, :class => "btn btn-primary btn-md pull-right" %> 
 
+
+                  
                   <%end%>
+                </div>
+
+                <div id="followed">
+
+                  <%= link_to "Unfollow", { :controller => "startups", :action => "unfollow", :id => @startup.id}, method: :put, remote: true, :class => "btn btn-danger btn-md pull-right hidden" %> 
+
+                </div>
+
+
+
+
+                
                 </div>
 
 

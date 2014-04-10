@@ -156,6 +156,13 @@
                   </label>
                 </div>
 
+               <div class="checkbox">
+                  <label>
+                    <%= f.check_box :casestudy %>
+                    Case study
+                  </label>
+                </div>
+
 <%else%>
 <%= f.hidden_field :user_id, :value => current_user.id %>
                 <% end %>

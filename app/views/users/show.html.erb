@@ -59,6 +59,9 @@ onClick="alert('This feature will be enabled soon, follow for now')">
 
                   <%end%>
                 </div>
+                <div id="followed">
+                    <%= link_to "Unfollow", { :controller => "users", :action => "unfollow", :id => @user.id}, method: :put, remote: true, :class => "btn btn-danger btn-md pull-right" %> 
+                </div>
 
 
 
@@ -82,14 +85,15 @@ onClick="alert('This feature will be enabled soon, follow for now')">
             <h2>Advisor credentials</h2>
             <br>
             <h4><b>Primary sector focus: </b><%=@user.sector%></h4>
-            <p><b>Stage preference: </b><% if @user.idea%>idea: <i class="fa fa-check"></i><%end%>
-              <% if @user.market%>market research: <i class="fa fa-check"></i><%end%>
-              <% if @user.product%>product development: <i class="fa fa-check"></i><%end%>
-              <% if @user.launch%>launch: <i class="fa fa-check"></i><%end%>
-              <% if @user.revenue%>revenue: <i class="fa fa-check"></i><%end%>
-              <% if @user.profitable%>profitable: <i class="fa fa-check"></i><%end%>
-              <% if @user.scaling%>scaling: <i class="fa fa-check"></i><%end%>
-              <% if @user.sale%>sale: <i class="fa fa-check"></i><%end%>
+            <p><b>Stage preference: </b>
+              <% if @user.idea == true%>idea: <i class="fa fa-check"></i><%end%>
+              <% if @user.market == true%>market research: <i class="fa fa-check"></i><%end%>
+              <% if @user.product == true%>product development: <i class="fa fa-check"></i><%end%>
+              <% if @user.launch == true%>launch: <i class="fa fa-check"></i><%end%>
+              <% if @user.revenue == true%>revenue: <i class="fa fa-check"></i><%end%>
+              <% if @user.profitable == true%>profitable: <i class="fa fa-check"></i><%end%>
+              <% if @user.scaling == true%>scaling: <i class="fa fa-check"></i><%end%>
+              <% if @user.sale == true%>sale: <i class="fa fa-check"></i><%end%>
             </p>  
 
 
@@ -186,7 +190,7 @@ onClick="alert('This feature will be enabled soon, follow for now')">
       <section class="panel advisordetailpanel">
         <div class="panel advisordetailpanel-inner">
           <div class="row">
-            <h2>Your startup profiles</h2>
+            <h2>Startup profiles</h2>
             <br>
 
             <% if @startups %>

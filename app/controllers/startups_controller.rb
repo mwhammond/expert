@@ -58,7 +58,17 @@ class StartupsController < ApplicationController
 	def follow
 		@startup = Startup.find(params[:id])
 		@user2 = current_user	
-		@startup.follow(@user2)
+		
+		respond_to do |format|
+		if @startup.follow(@user2)
+			
+    		format.html { render :action => "refresh" }
+    		format.js
+		end
+		
+		end
+
+
 	end
 
 	def unfollow
