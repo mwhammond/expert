@@ -16,7 +16,7 @@ gem 'rails_12factor', group: :production
 gem 'pg'
 
 # handles contact friend relationships
-gem 'act_as_buddy'
+gem 'acts_as_follower'
 
 # allows ENV variables to be set in yml file
 gem 'figaro'

@@ -7,25 +7,41 @@ class UsersController < ApplicationController
 	end
 
 	def index
-		@users = User.where(:featured => true).order(quality: :desc).first(12)
+
+		if current_user.admin
+
+			@users = User.where(:advisor => true)
+
+		else
+			@users = User.where(:advisor => true).order(quality: :desc).first(12)
+		end
+
 	end
 
 
 	def show
 		@user = User.find(params[:id])
 		@startups = Startup.where(:user_id == params[:id])
-	end
-
-	def friend
-
-	user1 = User.find(params[:id])
-	user2 = User.find(params[:id])
-	user1.add_buddy(user2) # Creates a messaage of containing the id of buddied records.
-
+		@followers = @user.followers
+		@following = @user.all_following
 
 	end
 
+	def follow
+		@user1 = User.find(params[:id])
+		@user2 = current_user	
+		@user1.follow(@user2)
+	end
+
+	def unfollow
+		@user1 = User.find(params[:id])
+		@user2 = current_user	
+		@user1.stop_following(@user2)
+	end
 
 
 
-end
+
+
+
+	end

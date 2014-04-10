@@ -5,10 +5,11 @@ Expert::Application.routes.draw do
   root 'home#index'
 
 
-resources :startups
-resources :advisors
+resources :startups do 
+  put :follow, :unfollow, :on => :member
+end
 resources :users do 
-  put :friend, :on => :collection
+  put :follow, :unfollow, :on => :member
 end
 
 

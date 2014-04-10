@@ -12,19 +12,17 @@
 
         <h3><%= link_to startup.name, startup%></h3>
 
-        <p><b><%= startup.sector %></b><p>
-          <p><%= startup.bio %></p>
-          <p><b>Searching for: </b><%= startup.requests %></p>
-          <p><b>Supporters: </b><a href="#">Kelsey Lyn, Mark Hammond, Tony Williams</a></p>
-          <div class="featuredpanel-bottom">
-            <div class="row centered">
+        
+          <h5><%= startup.bio %></h5>
+          <p><b>Sector: </b><%= startup.sector %><p>
+          <% if startup.casestudy %>
+          <p><b>Case study:
+            <%else%>
+          <p><b>Searching for: </b><%= startup.requests %>
+            <%end%>
+          </p>
+          <p><b>Followers: </b><a href="#">Kelsey Lyn, Mark Hammond, Tony Williams</a></p>
 
-              
-                <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-sm centered", method: :update %>
-
-              
-            </div>
-          </div>
 
           <div>
 

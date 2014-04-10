@@ -23,9 +23,9 @@
               </div>
 
             </div>
-                    
+
             <div>
-            
+
 
             </div>
 
@@ -35,11 +35,34 @@
             <div class="row">
               <div class="col-lg-12">
 
-              <%if @user.id == current_user.id%>
+
+
+                <%if @user.id == current_user.id%>
                 <h3><%= link_to "edit profile", edit_user_registration_path(current_user), :class=>"pull-right" %></h3>
                 <%else%>
-                 <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-md pull-right", method: :update %>
-              <%end%>
+
+                            <div>
+            <form name=myform>
+<input type=button value="Message" class="btn btn-default btn-md pull-right",
+onClick="alert('This feature will be enabled soon, follow for now')">
+</form>
+</div>
+
+                <div id="follow">
+                  <% if @user.following?(current_user) %>
+                  
+                  <%= link_to "Unfollow", { :controller => "users", :action => "unfollow", :id => @user.id}, method: :put, remote: true, :class => "btn btn-danger btn-md pull-right" %> 
+
+                  <%else%>
+
+                  <%= link_to "Follow", { :controller => "users", :action => "follow", :id => @user.id}, method: :put, remote: true, :class => "btn btn-primary btn-md pull-right" %> 
+
+                  <%end%>
+                </div>
+
+
+
+                <%end%>
               </div>
               
             </div>
@@ -52,14 +75,14 @@
 
       <%if @user.advisor%>
 
-          <section class="panel advisordetailpanel">
+      <section class="panel advisordetailpanel">
         <div class="panel advisordetailpanel-inner">
           <div class="row">
 
             <h2>Advisor credentials</h2>
             <br>
-             <h4><b>Primary sector focus: </b><%=@user.sector%></h4>
-             <p><b>Stage preference: </b><% if @user.idea%>idea: <i class="fa fa-check"></i><%end%>
+            <h4><b>Primary sector focus: </b><%=@user.sector%></h4>
+            <p><b>Stage preference: </b><% if @user.idea%>idea: <i class="fa fa-check"></i><%end%>
               <% if @user.market%>market research: <i class="fa fa-check"></i><%end%>
               <% if @user.product%>product development: <i class="fa fa-check"></i><%end%>
               <% if @user.launch%>launch: <i class="fa fa-check"></i><%end%>
@@ -67,11 +90,11 @@
               <% if @user.profitable%>profitable: <i class="fa fa-check"></i><%end%>
               <% if @user.scaling%>scaling: <i class="fa fa-check"></i><%end%>
               <% if @user.sale%>sale: <i class="fa fa-check"></i><%end%>
-             </p>  
+            </p>  
 
 
-             <h5><%=@user.longsummary%></h5>   
-             
+            <h5><%=@user.longsummary%></h5>   
+
             <br>
 
 
@@ -82,35 +105,74 @@
 
       <%else%>
 
-        <%if current_user.id == @user.id%>
+      <%if current_user.id == @user.id%>
 
-          <section class="panel advisordetailpanel">
+      <section class="panel advisordetailpanel">
         <div class="panel advisordetailpanel-inner">
           <div class="row">
-          <h3><%= link_to "Activate your advisor profile", edit_user_registration_path(current_user), :class=>"pull-right" %></h3>
-                    </div> 
+            <h3><%= link_to "Activate your advisor profile", edit_user_registration_path(current_user), :class=>"pull-right" %></h3>
+          </div> 
         </div> 
       </section>
 
-        <%end%>
+      <%end%>
 
       <%end%>
 
 
 
-    <section class="panel advisordetailpanel">
+      <section class="panel advisordetailpanel">
         <div class="panel advisordetailpanel-inner">
           <div class="row">
 
-            <h2>Connections</h2>
+            <h2>Following</h2>
 
             <br>
 
+            <%if @followers%>
+            <%@followers.each do |follower|%>
+
             <div class="connectionspeople">
-              <%= link_to image_tag(@user.avatar.url(:thumb), class: "img-responsive", :width => "75"), @user %>
-              <%= link_to @user.name, @user %><br>
-               <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-xs centered", method: :update %>
+              <%= link_to image_tag(follower.avatar.url(:thumb), class: "img-responsive", :width => "75"), follower %>
+              <%= link_to follower.name, follower %><br>
             </div>
+            <%end%>
+
+            <%else%>
+
+            <p>Not currently following any advisors or startups</p>
+          
+
+            <%end%>
+
+          </div> 
+        </div> 
+      </section>
+
+
+            <section class="panel advisordetailpanel">
+        <div class="panel advisordetailpanel-inner">
+          <div class="row">
+
+            <h2>Followers</h2>
+
+            <br>
+
+            <%if @following%>
+            <%@following.each do |followme|%>
+
+            <div class="connectionspeople">
+              <%= link_to image_tag(followme.avatar.url(:thumb), class: "img-responsive", :width => "75"), followme %>
+              <%= link_to followme.name, followme %><br>
+            </div>
+            <%end%>
+
+            <%else%>
+
+            <p>Not currently following any advisors or startups</p>
+          
+
+            <%end%>
 
           </div> 
         </div> 
@@ -120,39 +182,42 @@
 
     </div>
 
-     <div class="col-lg-5 col-lg-offset-1">
-                              <section class="panel advisordetailpanel">
-              <div class="panel advisordetailpanel-inner">
-                <div class="row">
-                  <h2>Startup profiles</h2>
+    <div class="col-lg-5 col-lg-offset-1">
+      <section class="panel advisordetailpanel">
+        <div class="panel advisordetailpanel-inner">
+          <div class="row">
+            <h2>Your startup profiles</h2>
+            <br>
 
-                    <% if @startups %>
+            <% if @startups %>
             <% @startups.each do |startup| %>
 
-              <div class="connectionspeople">
+            <div class="connectionspeople">
               <%= link_to image_tag(startup.avatar.url(:thumb), class: "img-responsive", :width => "75"), startup %>
               <%= link_to startup.name, startup %><br>
             </div>
 
-          <%end%>
-          <%else%>
-          <p>No startups listed</p>
+            <%end%>
+            <%else%>
+            <p>No startups listed</p>
 
-        <%end%>
+            <%end%>
+            <br>
+            <br><br>
 
-        <%if @user.id == current_user.id%>
-        <%= link_to "Create a startup profile", controller: "startups", action: "new", :class => "btn btn-primary btn-xs centered" %>
+            <%if @user.id == current_user.id%>
+            <%= button_to "Create a startup profile", new_startup_path, method: :get, :class =>"btn btn-primary btn-md center" %>
 
-        <%end%>
+            <%end%>
 
-                </div>
-              </div>
-            </section>
-                </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
   </div>
   <br>
-<br>
+  <br>
 </div>
 
 
@@ -171,4 +236,3 @@
 
 
 
-         

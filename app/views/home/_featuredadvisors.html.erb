@@ -2,23 +2,35 @@
 <div class="row centered">
 
   <% if users %>
-  <% users.each do |advisor| %>
+  <% users.each do |user| %>
 
   <div class="advisorpanel">
 
-    <%= link_to image_tag(advisor.avatar.url(:medium), class: "img-responsive"), advisor %>
+    <%= link_to image_tag(user.avatar.url(:medium), class: "img-responsive"), user %>
     <div>
       <div class="advisorpanel-inner">
 
-        <h3><%= link_to advisor.name, advisor%></h3>
+        
 
-        <p><b><%= advisor.name %></b><p>
-          <p><b>Expertise:</b> <%=advisor.sector%></p>
-          <p><%= advisor.shortsummary %></p>
+        <br>
+          <p><b>Expertise:</b> <%=user.sector%></p>
+          <p><%= user.shortsummary %></p>
           
           <div class="advisorpanel-bottom centered">
             <div class="row">
-                              <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-xs centered", method: :update %>
+                             
+                                     <div id="follow">
+                  <% if user.following?(current_user) %>
+                  
+                  <%= link_to "Unfollow", { :controller => "users", :action => "unfollow", :id => user.id}, method: :put, remote: true, :class => "btn btn-danger btn-md pull-right" %> 
+
+                  <%else%>
+
+                  <%= link_to "Follow", { :controller => "users", :action => "follow", :id => user.id}, method: :put, remote: true, :class => "btn btn-primary btn-sm centered" %> 
+
+                  <%end%>
+                </div>
+        
 
             </div>
           </div>

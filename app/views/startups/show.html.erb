@@ -39,7 +39,7 @@
 
             </div>
 
-          </div>
+
 
           <div class="advisordetailpanel-inner">
             <div class="row">
@@ -48,7 +48,30 @@
                 <h3><%= link_to "edit profile", edit_startup_path(@startup), :class=>"pull-right" %></h3>
                 <%else%>
 
+            <div>
+            <form name=myform>
+<input type=button value="Message" class="btn btn-default btn-md pull-right",
+onClick="alert('This feature will be enabled soon, follow for now')">
+</form>
+</div>
 
+
+
+                            <div id="follow">
+                  <% if @startup.following?(current_user) %>
+              
+                  
+                  <%= link_to "Unfollow", { :controller => "startups", :action => "unfollow", :id => @startup.id}, method: :put, remote: true, :class => "btn btn-danger btn-md pull-right" %> 
+
+                  <%else%>
+
+                  <%= link_to "Follow", { :controller => "startups", :action => "follow", :id => @startup.id}, method: :put, remote: true, :class => "btn btn-primary btn-md pull-right" %> 
+
+                  <%end%>
+                </div>
+
+
+          </div>
 
 
 
@@ -65,37 +88,29 @@
         
       </section>
 
-    <section class="panel advisordetailpanel">
+            <section class="panel advisordetailpanel">
         <div class="panel advisordetailpanel-inner">
           <div class="row">
 
-            <h2>Contact</h2>
-            <p>In order to get in touch with the team simply press connect on the most relavent team member and if they accept contact details will be exchanged.</p>
+            <h2>Followers</h2>
+
             <br>
 
+            <%if @following%>
+            <%@following.each do |followme|%>
 
             <div class="connectionspeople">
-           <p>In development...</p>
+              <%= link_to image_tag(followme.avatar.url(:thumb), class: "img-responsive", :width => "75"), followme %>
+              <%= link_to followme.name, followme %><br>
             </div>
+            <%end%>
 
-          </div> 
-        </div> 
-      </section>
+            <%else%>
 
+            <p>Not currently following any advisors or startups</p>
+          
 
-      <section class="panel advisordetailpanel">
-        <div class="panel advisordetailpanel-inner">
-          <div class="row">
-
-            <h2>Connections</h2>
-            <br>
-
-
-            <div class="connectionspeople">
-              <%= link_to image_tag(@startup.avatar.url(:thumb), class: "img-responsive", :width => "75"), @startup %>
-              <%= link_to @startup.name, @startup %><br>
-              <%= link_to "Connect", new_startup_path, :class => "btn btn-primary btn-xs centered", method: :update %>
-            </div>
+            <%end%>
 
           </div> 
         </div> 
