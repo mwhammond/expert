@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409212028) do
+ActiveRecord::Schema.define(version: 20140406173952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,17 +47,6 @@ ActiveRecord::Schema.define(version: 20140409212028) do
     t.binary   "scaling"
     t.binary   "sale"
   end
-
-  create_table "buddy_mappers", force: true do |t|
-    t.string   "buddeable_type"
-    t.integer  "buddeable_parent_id"
-    t.integer  "buddeable_child_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "buddy_mappers", ["buddeable_child_id"], name: "index_buddeable_child", using: :btree
-  add_index "buddy_mappers", ["buddeable_parent_id"], name: "index_buddeable_parent", using: :btree
 
   create_table "startups", force: true do |t|
     t.string   "name"
