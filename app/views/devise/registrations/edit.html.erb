@@ -201,6 +201,37 @@
                 </div>
 
 
+                <% if current_user.admin? %>
+
+                <h3>Admin options</h3>
+
+                <div class="checkbox">
+                  <p>
+                    <%= f.label :quality, "Rating (1-5)" %><br>
+                    <%= f.text_field :quality, size: "3x1" %>
+                  </p>
+                </div>
+
+
+                <div class="checkbox">
+                  <label>
+                    <%= f.check_box :featured %>
+                    Featured advisor
+                  </label>
+                </div>
+
+                 <div class="checkbox">
+                  <label>
+                    <%= f.check_box :public %>
+                    Make public
+                  </label>
+                </div>
+
+
+                <% end %>
+
+
+
 
 
                 <br>
@@ -262,9 +293,9 @@
                   </label>
                 </div>
 
-<%else%>
-<%= f.hidden_field :user_id, :value => current_user.id %>
                 <% end %>
+
+                
 
                         <%= f.submit "Save changes", :class => "btn btn-success pull-right" %>
                         <% end %>
