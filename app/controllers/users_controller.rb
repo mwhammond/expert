@@ -1,21 +1,13 @@
 class UsersController < ApplicationController
 
-
+before_filter :authenticate_user!
 
 	def new
 		redirect_to "/users/sign_up"
 	end
 
 	def index
-
-		if current_user.admin
-
-			@users = User.where(:advisor => true)
-
-		else
 			@users = User.where(:advisor => true).order(quality: :desc).first(12)
-		end
-
 	end
 
 
