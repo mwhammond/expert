@@ -164,8 +164,10 @@
                 </div>
 
 <%else%>
-<%= f.hidden_field :user_id, :value => current_user.id %>
+
                 <% end %>
+
+                <%= f.hidden_field :user_id, :value => current_user.id %>
 
                 
 

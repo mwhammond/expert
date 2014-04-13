@@ -13,7 +13,7 @@ before_filter :authenticate_user!
 
 	def show
 		@user = User.find(params[:id])
-		@startups = Startup.where(:user_id == params[:id])
+		@mystartups = Startup.where(:user_id => params[:id])
 		@followers = @user.followers
 		@following = @user.all_following
 

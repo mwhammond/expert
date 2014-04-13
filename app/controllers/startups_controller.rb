@@ -49,12 +49,11 @@ class StartupsController < ApplicationController
 	end
 
 
+
 	def destroy
-		session[:return_to] ||= request.referer
 		@startup = Startup.find(params[:id])
 		@startup.destroy
-
-		redirect_to session.delete(:return_to), notice: 'Profile removed'
+		redirect_to current_user, notice: 'Profile removed'
 	end
 
 	def follow

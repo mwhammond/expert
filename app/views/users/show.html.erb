@@ -35,9 +35,6 @@
             <div class="row">
               <div class="col-lg-12">
 
-
-<%=@user.id%>
-<%=current_user.id%>
                 <%if @user.id == current_user.id%>
                 <h3><%= link_to "edit profile", edit_user_registration_path(current_user), :class=>"pull-right" %></h3>
                 <%else%>
@@ -192,8 +189,8 @@ onClick="alert('This feature will be enabled soon, follow for now')">
             <h2>Startup profiles</h2>
             <br>
 
-            <% if @startups %>
-            <% @startups.each do |startup| %>
+            <% if @mystartups %>
+            <% @mystartups.each do |startup| %>
 
             <div class="connectionspeople">
               <%= link_to image_tag(startup.avatar.url(:thumb), class: "img-responsive", :width => "75"), startup %>

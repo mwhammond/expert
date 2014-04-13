@@ -12,8 +12,10 @@ class User < ActiveRecord::Base
   acts_as_followable
   acts_as_follower
 
-  has_attached_file :avatar, :styles => { :medium => "150x200>", :thumb => "150x200>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { :medium => "150x200>", :thumb => "150x200>" }, :default_url => "/images/:style/missing.jpg"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+
   	       
 
   def admin?
